@@ -453,6 +453,9 @@ details.article[open] summary:after{content:" －"}
   .dups{grid-column:2;justify-content:flex-start}
 }
 
+/* Approval captions must stay visible even if the scroll-in animation never fires. */
+#captions .pcard.reveal{opacity:1;transform:none}
+
 </style>
 </head>
 <body>
@@ -1071,6 +1074,7 @@ function render() {
     <div class="tags"><span class="tag">${esc(p.trackLabel)}</span><span class="tag">${esc(p.channel.split('+')[0].trim())}</span></div>
   </button>`).join('') || '<p class="muted">No plays match that filter.</p>';
   $$('#tgrid .tcard').forEach(b => b.onclick = () => openPlay(b.dataset.id));
+  reveal($('#tgrid') || document);
 }
 
 function openPlay(id) {
@@ -1169,16 +1173,26 @@ if ('IntersectionObserver' in window && !RM) {
   $$('[data-count]').forEach(e => co.observe(e));
 }
 
-/* reveal */
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), {threshold:.12});
-  // cards already have .reveal; ensure a fallback
+/* reveal — observe every .reveal, including cards added later by render() */
+function reveal(root) {
+  const els = [...(root || document).querySelectorAll('.reveal')].filter(el => !el.classList.contains('in'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window) || RM) {
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  if (!window.__vhRevealIO) {
+    window.__vhRevealIO = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); window.__vhRevealIO.unobserve(e.target); }
+    }), {threshold: .08, rootMargin: '0px 0px 80px 0px'});
+  }
+  els.forEach(el => window.__vhRevealIO.observe(el));
 }
 
 heroPost();
 render();
+reveal();
+setTimeout(() => $$('.reveal:not(.in)').forEach(el => el.classList.add('in')), 800);
 
 /* copy buttons */
 $$('[data-copy]').forEach(b => b.addEventListener('click', () => {
