@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Village Hub · Content strategy · November 2026</title>
+<meta name="description" content="Team showcase of The Village Hub's outbound content and social plan for November 2026. Recommendation only — nothing is scheduled until Christel and Marius say go.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--brown:#3A2412;--brown2:#6B4423;--gold:#C9A24B;--gold2:#E3C878;--olive:#8a9a5b;--olive2:#5f6d3a;--sage:#e9eedf;--cream:#F8F1E5;--paper:#fffdf8;--ink:#2b2118;--muted:#6a5a4a;--line:#eadfcb;--bad:#b0472f;--ok:#2f6a2a;--wa:#1f5c45;--wabg:#efe6d8;--wame:#dcf3c8;
+--serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;--r:18px;--shadow:0 10px 30px -12px rgba(58,36,18,.25);--nav:64px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:var(--brown2)}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--brown);line-height:1.15;margin:0 0 .5em;font-weight:600}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem)}h3{font-size:1.25rem}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+section{padding:88px 0;position:relative}
+.eyebrow{font:600 .75rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--olive2);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--gold)}
+.lead{font-size:1.12rem;color:var(--muted);max-width:760px}
+.muted{color:var(--muted)}.small{font-size:.86rem}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--olive));width:0;z-index:60}
+nav.top{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(248,241,229,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s, box-shadow .3s}
+nav.top.scrolled{border-color:var(--line);box-shadow:0 6px 20px -16px rgba(58,36,18,.5)}
+nav.top .wrap{display:flex;align-items:center;height:100%;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--brown);font-family:var(--serif);font-weight:600;font-size:1.05rem;white-space:nowrap}
+.brand img{width:34px;height:34px;border-radius:50%}
+.navlinks{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{font-size:.84rem;font-weight:500;color:var(--muted);text-decoration:none;padding:8px 11px;border-radius:999px;white-space:nowrap;transition:.2s}
+.navlinks a:hover{color:var(--brown);background:rgba(201,162,75,.14)}
+.navlinks a.active{background:var(--brown);color:var(--cream)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:600 .85rem var(--sans);color:var(--brown)}
+@media(max-width:980px){.navlinks{display:none;position:absolute;top:var(--nav);left:0;right:0;flex-direction:column;background:var(--paper);padding:12px 18px 18px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}.navlinks.open{display:flex}.menu-btn{display:block}}
+.hero{position:relative;min-height:calc(100vh - var(--nav));display:flex;align-items:center;padding:70px 0 90px;overflow:hidden;color:#fff;background:#2a1b0e}
+.hero .bg{position:absolute;inset:0;background:url(assets/hero-reception.jpg) center/cover no-repeat;transform:scale(1.06);animation:slowzoom 22s ease-out forwards;opacity:.55}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 40%,rgba(42,27,14,.35),rgba(42,27,14,.92) 70%),linear-gradient(180deg,rgba(42,27,14,.2),rgba(42,27,14,.85))}
+@keyframes slowzoom{to{transform:scale(1)}}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:center}
+.hero h1{color:#fff;font-size:clamp(2.4rem,5.6vw,4.4rem);font-weight:600;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero p.lead{color:rgba(255,255,255,.82);font-size:1.2rem}
+.hero .eyebrow{color:var(--gold2)}
+.pillrow{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff}
+.pill b{color:var(--gold2)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--brown);font-weight:700;padding:14px 22px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px -10px rgba(201,162,75,.7);transition:transform .2s}
+.cta:hover{transform:translateY(-2px)}
+.cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);box-shadow:none;margin-left:8px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:46px}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px}
+.stat .n{font-family:var(--serif);font-size:2.2rem;color:#fff;line-height:1}
+.stat .l{font-size:.8rem;color:rgba(255,255,255,.7);margin-top:6px}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero .phone{display:none}.stats{grid-template-columns:repeat(2,1fr)}.cta.ghost{margin:10px 0 0}}
+.phone{width:320px;max-width:100%;margin:0 auto;border-radius:42px;background:#111;padding:11px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6),inset 0 0 0 2px #333;position:relative}
+.phone .screen{border-radius:32px;overflow:hidden;background:var(--wabg);height:600px;display:flex;flex-direction:column}
+.phone .notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:96px;height:24px;border-radius:20px;background:#000;z-index:3}
+.wa-status{height:36px;background:var(--wa);display:flex;justify-content:space-between;align-items:flex-end;padding:0 22px 4px;color:#fff;font-size:.7rem;font-weight:600}
+.wa-head{background:var(--wa);color:#fff;display:flex;align-items:center;gap:10px;padding:8px 12px 10px}
+.wa-head img{width:34px;height:34px;border-radius:50%;background:#fff}
+.wa-head .t{font-weight:600;font-size:.92rem;line-height:1.1}.wa-head .s{font-size:.7rem;opacity:.8}
+.wa-head .v{margin-left:4px;display:inline-block;width:13px;height:13px;border-radius:50%;background:#25d366;color:#fff;font-size:9px;text-align:center;line-height:13px;vertical-align:1px}
+.wa-body{flex:1;overflow-y:auto;padding:12px 10px 16px;display:flex;flex-direction:column;gap:6px;background-color:var(--wabg);background-image:radial-gradient(rgba(107,68,35,.07) 1px,transparent 1px);background-size:14px 14px;scrollbar-width:thin}
+.day{align-self:center;background:#fff8e8;color:#6a5a4a;font-size:.68rem;padding:4px 10px;border-radius:8px;margin:4px 0;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.sys{align-self:center;background:#fdf3c9;color:#5c4a12;font-size:.68rem;padding:5px 10px;border-radius:8px;text-align:center;max-width:90%}
+.msg{color:var(--ink);text-align:left;max-width:86%;padding:7px 9px 18px;border-radius:10px;font-size:.84rem;line-height:1.38;position:relative;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-wrap;word-wrap:break-word;animation:pop .35s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.msg.biz{background:#fff;align-self:flex-start;border-top-left-radius:2px}
+.msg.me{background:var(--wame);align-self:flex-end;border-top-right-radius:2px}
+.msg.internal{background:#fff5f0;border:1px dashed #d79a83}
+.msg .tm{position:absolute;right:8px;bottom:3px;font-size:.62rem;color:#8a8a8a}
+.msg.me .tm:after{content:" ✓✓";color:#53bdeb}
+.msg mark{background:rgba(201,162,75,.28);color:inherit;border-radius:3px;padding:0 2px}
+.msg .var{display:inline-block;background:#efe3c6;color:#6B4423;font-size:.74rem;border-radius:4px;padding:0 4px;font-family:ui-monospace,Menlo,monospace}
+.msg a{color:#027eb5;word-break:break-all}
+.msg .tagl{display:block;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--olive2);margin-bottom:3px}
+.btns{align-self:flex-start;width:86%;display:flex;flex-direction:column;gap:3px;margin-top:-3px;animation:pop .35s .08s both}
+.btns span{background:#fff;color:#027eb5;text-align:center;font-size:.8rem;font-weight:500;padding:7px;border-radius:8px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.typing{align-self:flex-start;background:#fff;border-radius:10px;padding:10px 12px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9aa;animation:blink 1.2s infinite}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.wa-input{display:flex;gap:6px;align-items:center;padding:7px 8px 12px;background:var(--wabg)}
+.wa-input div{flex:1;background:#fff;border-radius:20px;padding:8px 12px;font-size:.78rem;color:#999}
+.wa-input b{width:34px;height:34px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;font-size:.9rem}
+.grid{display:grid;gap:18px}.grid>*,.dbody>*,.journey>*,.rflow>*,.now>*,.phases>*{min-width:0}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:0 1px 0 rgba(58,36,18,.03);transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:hover{box-shadow:var(--shadow)}
+.ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--sage);font-size:1.25rem;margin-bottom:12px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dark{background:var(--brown);color:#f1e7d6}.dark h2,.dark h3{color:#fff}.dark .lead,.dark .muted{color:rgba(241,231,214,.75)}.dark .eyebrow{color:var(--gold2)}
+.arch{display:grid;grid-template-columns:1fr 60px 1.1fr 60px 1fr 60px 1fr;align-items:center;margin-top:34px}
+.arch .col{display:flex;flex-direction:column;gap:10px}
+.node{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.86rem}
+.node b{display:block;color:var(--brown);font-size:.92rem}.node span{color:var(--muted);font-size:.78rem}
+.node.hl{border-color:var(--gold);background:linear-gradient(180deg,#fffaf0,#fff6e2)}
+.node.ok{border-color:#b8c79a;background:#f5f8ee}
+.pipe{height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 14px);position:relative;animation:flow 1.1s linear infinite}
+@keyframes flow{to{background-position:14px 0}}
+.pipe:after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left:8px solid var(--gold)}
+.colhead{font:700 .7rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive2);margin-bottom:2px}
+@media(max-width:1000px){.arch{grid-template-columns:1fr}.pipe{height:34px;width:2px;margin:6px auto;background:repeating-linear-gradient(180deg,var(--gold) 0 8px,transparent 8px 14px)}.pipe:after{right:-6px;top:auto;bottom:-6px;border:6px solid transparent;border-top:8px solid var(--gold)}}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fact{font-size:.8rem;background:var(--paper);border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--muted)}.fact b{color:var(--brown)}
+.aud{cursor:pointer;position:relative;overflow:hidden}
+.aud:hover{transform:translateY(-4px);border-color:var(--gold)}
+.aud .cnt{position:absolute;top:18px;right:18px;font-family:var(--serif);font-size:1.6rem;color:var(--gold)}
+.aud p{font-size:.88rem;color:var(--muted);margin:.3em 0 .8em}
+.aud .go{font-size:.78rem;font-weight:600;color:var(--olive2)}
+.aud.off{cursor:default;background:repeating-linear-gradient(135deg,var(--paper) 0 12px,#f6efe2 12px 24px)}
+.aud.off:hover{transform:none;border-color:var(--line)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:28px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--muted);font:500 .82rem var(--sans);padding:7px 13px;border-radius:999px;cursor:pointer;transition:.18s}
+.chip:hover{border-color:var(--gold);color:var(--brown)}
+.chip.on{background:var(--brown);border-color:var(--brown);color:#fff}
+.chip .c{opacity:.6;margin-left:4px;font-size:.74rem}
+select,input[type=search]{font:500 .85rem var(--sans);padding:9px 13px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink)}
+input[type=search]{min-width:200px;flex:1;max-width:320px}
+.count{font-size:.84rem;color:var(--muted);margin-left:auto}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+.tcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column;gap:8px;position:relative;text-align:left;font:inherit;color:inherit;animation:pop .35s both}
+.tcard:hover,.tcard:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--gold);outline:none}
+.tcard .id{font:700 .78rem ui-monospace,Menlo,monospace;color:var(--brown2);background:#f3e9d6;border-radius:6px;padding:2px 7px;align-self:flex-start}
+.tcard h4{font-size:1.02rem;margin:0;font-family:var(--sans);font-weight:600;color:var(--ink)}
+.tcard .tm{font-size:.8rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.tag{font-size:.7rem;font-weight:600;padding:3px 8px;border-radius:6px;background:#f1ebdf;color:var(--muted)}
+.st-built{background:#e4eed5;color:#3d5a1d}.st-p2{background:#f6ead0;color:#7a5a12}.st-p3{background:#ece6f3;color:#5a4880}
+.ms-PENDING{background:#fff1cc;color:#7a5a00}.ms-draft{background:#eee9e1;color:#6a5a4a}.ms-free{background:#dff1ea;color:#1f5c45}
+.stage-dot{position:absolute;top:16px;right:16px;width:10px;height:10px;border-radius:50%}
+.empty{padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+.scrim{position:fixed;inset:0;background:rgba(30,20,10,.45);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(980px,100%);background:var(--cream);z-index:90;transform:translateX(102%);transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4)}
+.drawer.open{transform:none}
+.dhead{display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--line);background:var(--paper)}
+.dhead h3{margin:0;font-size:1.3rem}
+.dhead .x{border:0;background:#f1e8d8;width:38px;height:38px;border-radius:50%;font-size:1.1rem;cursor:pointer;color:var(--brown)}
+.dnav{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:7px 11px;cursor:pointer;font:600 .8rem var(--sans);color:var(--brown)}
+.dnav.first{margin-left:auto}
+.dbody{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 340px;gap:24px;padding:22px}
+.dl{display:grid;grid-template-columns:150px 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);margin:0}
+.dl dt,.dl dd{margin:0;padding:10px 14px;border-bottom:1px solid var(--line);font-size:.86rem}
+.dl dt{font-weight:600;color:var(--brown);background:#fbf6ec}
+.dl dt:last-of-type,.dl dd:last-of-type{border-bottom:0}
+.built{background:#f1f6e7;border:1px solid #c9d8ad;border-radius:14px;padding:14px 16px;margin:0 0 14px;font-size:.86rem}
+.built b{color:#3d5a1d}
+@media(max-width:860px){.dbody{grid-template-columns:1fr}.drawer{top:auto;bottom:0;height:92%;border-radius:22px 22px 0 0;transform:translateY(102%)}.dl{grid-template-columns:1fr}.dl dt{border-bottom:0;padding-bottom:2px}.dhead h3{font-size:1.05rem}}
+.rflow{display:grid;grid-template-columns:1.3fr .9fr;gap:34px;align-items:start;margin-top:30px}
+@media(max-width:960px){.rflow{grid-template-columns:1fr}}
+.tree{display:flex;flex-direction:column;align-items:center}
+.tn{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:11px 15px;font-size:.86rem;text-align:center;max-width:320px;width:100%;transition:all .35s;position:relative}
+.tn b{display:block;color:var(--brown)}
+.tn small{color:var(--muted);font-size:.75rem}
+.tn.q{border-radius:999px;background:#fbf6ec}
+.tn.lit{border-color:var(--gold);background:#fff6df;box-shadow:0 0 0 5px rgba(201,162,75,.18);transform:scale(1.03)}
+.tn.lit.good{border-color:#6f8f3a;background:#eef5e2;box-shadow:0 0 0 5px rgba(111,143,58,.18)}
+.tn.lit.badn{border-color:var(--bad);background:#fbeae4;box-shadow:0 0 0 5px rgba(176,71,47,.15)}
+.tn.dim{opacity:.38}
+.vline{width:2px;height:22px;background:var(--line);transition:.35s}.vline.lit{background:var(--gold)}.vline.dim{opacity:.4}
+.branches{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;position:relative;padding-top:20px}
+.branches:before{content:"";position:absolute;top:0;left:25%;right:25%;height:20px;border:2px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0}
+.branch{display:flex;flex-direction:column;align-items:center}
+.lbl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--olive2);margin:6px 0}
+.lbl.r{color:var(--bad)}
+.sim{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:18px}
+.stars{display:flex;gap:6px;margin:8px 0 14px}
+.stars button{flex:1;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 0;font:700 1rem var(--sans);cursor:pointer;color:var(--brown);transition:.2s}
+.stars button.on{background:var(--brown);color:#fff;border-color:var(--brown)}
+.tog{display:flex;align-items:center;gap:10px;font-size:.86rem;margin:8px 0;cursor:pointer;user-select:none}
+.tog input{appearance:none;-webkit-appearance:none;width:40px;height:22px;border-radius:20px;background:#d9cfbd;position:relative;cursor:pointer;transition:.2s;flex:none;margin:0}
+.tog input:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s}
+.tog input:checked{background:var(--olive)}.tog input:checked:after{left:21px}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+@media(max-width:900px){.rules{grid-template-columns:repeat(2,1fr)}}
+.rule{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
+.rule .big{font-family:var(--serif);font-size:1.7rem;color:var(--brown2);line-height:1}
+.rule p{margin:.4em 0 0;font-size:.82rem;color:var(--muted)}
+.journey{display:grid;grid-template-columns:1fr 340px;gap:34px;margin-top:30px;align-items:start}
+.jphone{position:sticky;top:calc(var(--nav) + 20px)}
+@media(max-width:960px){.journey{grid-template-columns:1fr}.jphone{position:static}}
+.steps{position:relative;display:flex;flex-direction:column;gap:8px}
+.steps:before{content:"";position:absolute;left:21px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.step{position:relative;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:10px 12px 10px 0;border-radius:14px;cursor:pointer;transition:.25s;background:transparent;border:0;text-align:left;font:inherit;color:inherit;width:100%}
+.step .dot{width:44px;height:44px;border-radius:50%;background:var(--paper);border:2px solid var(--line);display:grid;place-items:center;font-size:1.1rem;z-index:1;transition:.3s}
+.step .s-t{font-weight:600;color:var(--ink)}.step .s-d{font-size:.84rem;color:var(--muted)}
+.step .s-m{font-size:.72rem;font-weight:700;color:var(--olive2);letter-spacing:.06em;text-transform:uppercase}
+.step .s-full{display:none;font-size:.8rem;color:var(--muted);margin-top:4px;white-space:pre-wrap}
+.step.done .dot{border-color:var(--olive);background:#eef3e3}
+.step.cur{background:var(--cream);box-shadow:var(--shadow)}
+.step.cur .dot{border-color:var(--gold);background:var(--gold);transform:scale(1.08)}
+.jctrl{display:flex;gap:8px;margin-top:14px;justify-content:center}
+.jctrl button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 16px;font:600 .84rem var(--sans);color:var(--brown);cursor:pointer}
+.jctrl button.pri{background:var(--brown);color:#fff;border-color:var(--brown)}
+.persona{display:flex;gap:14px;align-items:center;background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:16px}
+.persona .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--olive));display:grid;place-items:center;color:#fff;font:700 1.2rem var(--serif);flex:none}
+.week{margin-top:16px;overflow-x:auto}
+.wk{display:grid;grid-template-columns:34px repeat(24,minmax(9px,1fr));gap:2px;min-width:300px}
+.wk .h{font-size:.6rem;color:var(--muted);text-align:center}
+.wk .d{font-size:.72rem;font-weight:600;color:var(--brown);display:flex;align-items:center}
+.wk .c{height:20px;border-radius:4px;background:#e6dccb;transition:background .4s}
+.wk .c.ok{background:var(--olive)}.wk .c.cond{background:var(--gold2)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+table.t{width:100%;border-collapse:collapse;font-size:.84rem;background:var(--paper);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+table.t th,table.t td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.t th{background:#fbf6ec;color:var(--brown);font-weight:600}
+table.t tr:last-child td{border-bottom:0}
+.prio{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.prio span{background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:.78rem}
+.prio i{color:var(--gold);font-style:normal}
+.life{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0 6px}
+.life span{padding:8px 14px;border-radius:12px;font:600 .82rem ui-monospace,Menlo,monospace;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+.life span.g{background:var(--gold);color:var(--brown);border-color:var(--gold)}
+.life i{color:var(--gold2);font-style:normal}
+.role{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:20px}
+.role h3{margin-bottom:4px}.role .who{font-size:.74rem;color:var(--gold2);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.role ul{padding-left:18px;margin:.6em 0 0;font-size:.88rem;color:rgba(241,231,214,.85)}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+@media(max-width:1000px){.phases{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.phases{grid-template-columns:1fr}}
+.phase{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px}
+.phase .ph{font:700 .72rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--olive2)}
+.phase .bar{height:6px;border-radius:6px;background:#eee4d2;margin:12px 0 14px;overflow:hidden}
+.phase .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--olive),var(--gold));width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.phase ul{list-style:none;padding:0;margin:0;font-size:.84rem;display:flex;flex-direction:column;gap:7px}
+.phase li{display:grid;grid-template-columns:18px 1fr;gap:6px}
+.phase li:before{content:"○";color:#b9a98f}
+.phase li.d:before{content:"●";color:var(--olive)}
+.phase li.w:before{content:"◐";color:var(--gold)}
+.plegend{display:flex;gap:16px;font-size:.78rem;color:var(--muted);margin-top:12px;flex-wrap:wrap}
+.now{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}@media(max-width:800px){.now{grid-template-columns:1fr}}
+.now li{margin-bottom:6px}
+.tlib{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px;margin-top:14px}
+.tlib div{display:flex;justify-content:space-between;gap:6px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:.76rem}
+.tlib code{font-weight:700;color:var(--brown2)}
+details.gap{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:8px}
+details.gap summary{cursor:pointer;font-weight:600;color:var(--brown)}
+footer{background:#24170b;color:rgba(241,231,214,.7);padding:50px 0;font-size:.85rem}
+footer .wrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+footer img{width:44px;border-radius:50%}
+.print-only{display:none}
+code{font-size:.9em;background:rgba(201,162,75,.15);padding:0 4px;border-radius:4px}
+.dark code{background:rgba(255,255,255,.12)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media print{
+ @page{size:A4;margin:12mm 11mm}
+ html,body{background:#fff;font-size:9.5pt}
+ nav.top,#progress,.drawer,.scrim,.toolbar,.jctrl,.menu-btn,.sim,.no-print,.hero .bg,.hero .phone,.jphone,#revPhone,.cta{display:none!important}
+ section{padding:14px 0}
+ .hero{min-height:0;color:var(--ink);background:#fff;padding:0 0 8px;display:block}.hero:after{display:none}
+ .hero .wrap{display:block}
+ .hero h1{color:var(--brown);font-size:24pt}.hero h1 em{color:var(--brown2)}.hero p.lead,.stat .l,.pill{color:var(--ink)}.stat .n{color:var(--brown)}.hero .eyebrow{color:var(--olive2)}
+ .pill,.stat{border-color:var(--line);background:#fff}.pill b{color:var(--brown2)}
+ .dark{background:#fff;color:var(--ink)}.dark h2,.dark h3{color:var(--brown)}.dark .lead,.dark .muted,.role ul{color:var(--ink)}.dark .eyebrow,.role .who{color:var(--olive2)}
+ .role,.life span{border-color:var(--line);background:#fff;color:var(--ink)}.life span.g{background:var(--gold2)}
+ .reveal{opacity:1!important;transform:none!important}
+ .card,.phase,.rule,.node,.role,.step,details.gap,.tlib div{break-inside:avoid;box-shadow:none!important}
+ .tgrid{display:none!important}.print-only{display:block}
+ h2{break-after:avoid;font-size:16pt}h3{break-after:avoid}
+ .pt{width:100%;border-collapse:collapse;font-size:7.4pt}
+ .pt td,.pt th{border:1px solid #ddd;padding:3px 5px;vertical-align:top;text-align:left}
+ .pt th{background:#f5efe3}
+ .pt tr{break-inside:avoid}
+ a{color:var(--ink);text-decoration:none}
+ .journey,.rflow{grid-template-columns:1fr;display:block}
+ .step .s-full{display:block!important}
+ .step.cur{box-shadow:none;background:#fff}
+ .arch{grid-template-columns:1fr 14px 1fr 14px 1fr 14px 1fr}.arch .pipe{height:2px;width:auto;margin:0;animation:none}
+ .g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+ .phases{grid-template-columns:repeat(2,1fr)}
+ #audiences,#triggers,#reviews,#journey,#guardrails,#team,#roadmap{break-before:page}
+ details.gap > p{display:block!important}
+ footer{background:#fff;color:var(--ink);padding:10px 0}
+}
+
+/* Content-strategy additions on top of the WhatsApp-strategy visual system */
+.st{font:700 .68rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:999px;align-self:flex-start}
+.st-now{background:#eef5e2;color:#3d5a1d}
+.st-yes{background:#fff3d4;color:#7a5a12}
+.st-later{background:#f1ebdf;color:#6a5a4a}
+.st-gap{background:#fbeae4;color:#8a3220}
+.post{width:320px;max-width:100%;margin:0 auto;border-radius:22px;background:#111;padding:10px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6),inset 0 0 0 2px #333;position:relative}
+.post .screen{border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.post .pbar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #f0ebe3}
+.post .pbar img{width:30px;height:30px;border-radius:50%;background:#fff;object-fit:cover}
+.post .pbar .nm{font-weight:600;font-size:.8rem;color:#1c1c1c;line-height:1.15}
+.post .pbar .ch{font-size:.66rem;color:#8a7a6a;font-weight:500}
+.post .photo{aspect-ratio:4/5;background:#d9cbb6 center/cover no-repeat;position:relative}
+.post .photo .need{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;background:linear-gradient(180deg,rgba(42,27,14,.15),rgba(42,27,14,.72));color:#fff}
+.post .photo .need b{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+.post .photo .need span{font-size:.78rem;opacity:.9}
+.post .acts{padding:8px 12px 2px;font-size:1.05rem;letter-spacing:.04em;color:#3A2412}
+.post .cap{padding:2px 12px 14px;font-size:.8rem;line-height:1.45;color:#2b2118;white-space:pre-wrap}
+.post .cap b{font-weight:600}
+.post .cta-line{display:block;margin-top:6px;color:#6B4423;font-weight:600;font-size:.76rem}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:28px}
+.wday{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 10px;min-height:140px}
+.wday .d{font:700 .68rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--olive2);margin-bottom:8px}
+.wday p{margin:0;font-size:.8rem;color:var(--ink)}
+.wday.off{background:#f4efe6;opacity:.7}
+.wday.off .d{color:var(--muted)}
+.wday.hl{border-color:var(--gold);background:linear-gradient(180deg,#fffaf0,#fff6e2)}
+.check{list-style:none;margin:16px 0 0;padding:0}
+.check li{position:relative;padding:10px 12px 10px 40px;border:1px solid var(--line);border-radius:12px;background:var(--paper);margin-bottom:8px;font-size:.9rem}
+.check li:before{content:"";position:absolute;left:12px;top:14px;width:16px;height:16px;border:2px solid var(--gold);border-radius:4px}
+.rule{background:var(--paper);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:14px 16px;font-size:.9rem}
+.rule.no{border-left-color:var(--bad)}
+.role{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px}
+.role h3{font-family:var(--sans);font-size:1.05rem}
+.note{background:#fff6e2;border:1px solid #e3c878;border-radius:14px;padding:14px 16px;font-size:.88rem;color:var(--brown)}
+.tcard .tm{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:900px){
+  .week{grid-template-columns:1fr 1fr}
+  .hero .post{display:none}
+}
+@media(max-width:560px){.week{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav class="top" id="nav"><div class="wrap">
+ <a class="brand" href="#top"><img src="assets/logo.png" alt="">The Village Hub</a>
+ <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu ☰</button>
+ <div class="navlinks" id="navlinks">
+  <a href="#overview">Overview</a>
+  <a href="#now">Where we are</a>
+  <a href="#rhythm">Rhythm</a>
+  <a href="#plays">Plays</a>
+  <a href="#channels">Channels</a>
+  <a href="#floor">Meet the floor</a>
+  <a href="#ads">Ads &amp; rules</a>
+  <a href="#team">Team</a>
+ </div>
+</div></nav>
+
+<header class="hero" id="top">
+ <div class="bg" role="img" aria-label="Village Hub reception"></div>
+ <div class="wrap">
+  <div>
+   <div class="eyebrow">Team showcase · Content &amp; social strategy · 12 Nov 2026</div>
+   <h1>Show the floor. Fill the desks. <em>Open the rooms.</em></h1>
+   <p class="lead">This is how The Village Hub plans to talk in public this month: what we post, why it looks the way it does, and what stays off the table. Nothing here is scheduled until Christel and Marius say go.</p>
+   <div class="pillrow">
+    <span class="pill">✋ <b>Recommendation only</b> · nothing is live</span>
+    <span class="pill">✍️ Christel posts · captions to her, CC Marius</span>
+    <span class="pill">📱 Public number <b>+27 63 260 3513</b> only</span>
+   </div>
+   <a class="cta" href="#plays">Explore the 18 plays →</a>
+   <a class="cta ghost" href="#rhythm">See the weekly rhythm</a>
+   <div class="stats">
+    <div class="stat"><div class="n" data-count="18">18</div><div class="l">plays across 7 tracks</div></div>
+    <div class="stat"><div class="n">R7,500</div><div class="l">2-seater offices, excl. VAT</div></div>
+    <div class="stat"><div class="n" data-count="4">4</div><div class="l">room bookings, last 30 days</div></div>
+    <div class="stat"><div class="n">Tour</div><div class="l">primary CTA, villagehub.co.za</div></div>
+   </div>
+  </div>
+  <div class="phone" id="heroPhone"></div>
+ </div>
+</header>
+
+<section id="overview"><div class="wrap">
+ <div class="eyebrow">1 · Overview</div>
+ <h2>One goal: make the open floor and the 2-seaters feel like the obvious next step.</h2>
+ <p class="lead">Offices are otherwise quite full. The work now is to fill hot desks and the 2-seater private offices (Offices 9, 10, 11 and 13, at R7,500 a month excluding 15% VAT), with boardrooms a strong second, Village Stay in the same plan, and a weekly introduction of the people already on the floor — including long-standing tenants, not only new arrivals.</p>
+ <div class="grid g4" style="margin-top:30px">
+  <div class="card reveal"><div class="ico">☕</div><h3>Hot desks</h3><p class="muted small">Lead with the day pass (R250 excl. VAT) and the ladder up to Wanderer, Visitor, Local and Resident. A free day exists only with a tour, never on its own.</p></div>
+  <div class="card reveal"><div class="ico">🚪</div><h3>2-seater offices</h3><p class="muted small">The one office product still to let. Always R7,500 excl. VAT — the old R6,950 figure is retired. Show a real 2-seater, not a hot desk.</p></div>
+  <div class="card reveal"><div class="ico">🪑</div><h3>Boardrooms</h3><p class="muted small">Village Boardroom (12) and Village Chamber (10). After-work and a clear Google pairing. Real photos first — we will not post generated rooms.</p></div>
+  <div class="card reveal"><div class="ico">🏡</div><h3>Stay, floor &amp; community</h3><p class="muted small">Village Stay as the neighbour, a Tuesday coffee, the Foundry lawn, and tenant intros only after a signed yes.</p></div>
+ </div>
+ <div class="facts">
+  <span class="fact">Primary CTA <b>book a tour on villagehub.co.za</b></span>
+  <span class="fact">Public WhatsApp <b>+27 63 260 3513</b></span>
+  <span class="fact">Email <b>hello@villagehub.co.za</b></span>
+  <span class="fact">Prices <b>excl. VAT, as on the live site</b></span>
+  <span class="fact">Quiet hours <b>20:00–07:00 SAST · no Sunday marketing</b></span>
+ </div>
+</div></section>
+
+<section id="now" class="alt"><div class="wrap">
+ <div class="eyebrow">2 · Where we are now</div>
+ <h2>A plan we can post from, not a calendar we pretend is already live.</h2>
+ <p class="lead">The earlier 8-week content calendar was a 7 November proposal. Nothing from it has been published, and the shoot clips had not landed as of 9 November. This page replaces that shape: triggers, mock posts, and the thinking behind them — in the same spirit as the <a href="https://villagehub-wa-strategy-2026.netlify.app/" target="_blank" rel="noopener">WhatsApp member-journey strategy</a>.</p>
+ <div class="grid g2" style="margin-top:28px">
+  <div class="card reveal">
+   <h3>On the floor</h3>
+   <p class="muted small">Hot desks and the 2-seaters are the vacancy to close. Larger offices are quite full. Boardroom and Chamber use has been thin — 4 bookings in the last 30 days, 2 upcoming — so rooms need a weekly public presence once we have real photographs.</p>
+  </div>
+  <div class="card reveal">
+   <h3>In public</h3>
+   <p class="muted small">LinkedIn last posted around 21 May and sits at 63 followers. Google Business Profile is a working channel and should carry rooms and the 2-seater. Facebook and Instagram are the main public face; Christel approves and posts every caption. Real photos and clips only.</p>
+  </div>
+ </div>
+ <table class="t" style="margin-top:28px">
+  <thead><tr><th>Track</th><th>Status</th><th>What it needs</th></tr></thead>
+  <tbody>
+   <tr><td>Hot desks</td><td>Ready to draft</td><td>Live prices from the site. Do not revive the Winter Hot Desk Special. No standalone free day.</td></tr>
+   <tr><td>2-seater offices</td><td>Needs a real photo</td><td>Shoot Office 9, 10, 11 or 13 this week. Quote R7,500 excl. VAT only.</td></tr>
+   <tr><td>Boardrooms</td><td>Blocked on photography</td><td>Current room images look generated and must not be posted. Shoot both rooms first.</td></tr>
+   <tr><td>Meet the floor</td><td>Waiting on a signed yes</td><td>A named spokesperson, a portrait, and logo approval before the first Tuesday intro.</td></tr>
+   <tr><td>Community</td><td>Can start light</td><td>Tuesday coffee and Foundry lawn can run on real photos we already have. The walk-through reel is the gap.</td></tr>
+   <tr><td>Village Stay</td><td>Story is ready, listing must agree</td><td>Align children policy, check-in and enquiry path before we push harder. Stay stays out of the coworking WhatsApp journey.</td></tr>
+   <tr><td>Virtual office</td><td>Ads stay live</td><td>Do not pause or cut Virtual Office Google Ads. Organic is supporting only. Website lead form stays the primary conversion.</td></tr>
+   <tr><td>Student desks</td><td>Ads paused</td><td>Organic only, in season. Do not unpause Student Study Space ads without a written yes.</td></tr>
+  </tbody>
+ </table>
+ <p class="note" style="margin-top:22px">Live changes to the site, ads or member contact still need Marius’s written yes, except actions Hub Desk already has standing authority for. Log material changes in the Village Hub change log first.</p>
+</div></section>
+
+<section id="rhythm"><div class="wrap">
+ <div class="eyebrow">3 · Weekly rhythm</div>
+ <h2>A week the floor can actually keep.</h2>
+ <p class="lead">Four public beats, not an eight-week grid. Sunday stays dark. Nothing goes out between 20:00 and 07:00 SAST. If the week is thin on the floor, we skip a beat rather than invent a crowd.</p>
+ <div class="week">
+  <div class="wday off"><div class="d">Mon</div><p>Internal: captions to Christel, CC Marius. Confirm prices against the live site. Check the room diary with Hub Desk.</p></div>
+  <div class="wday hl"><div class="d">Tue</div><p><b>Meet the floor.</b> Tenant introduction (once there is a signed yes), plus a Tuesday coffee story. This is the community heartbeat.</p></div>
+  <div class="wday off"><div class="d">Wed</div><p>Quiet on feed. Stories only if there is a real tour, a real room gap, or a real moment on the floor.</p></div>
+  <div class="wday hl"><div class="d">Thu</div><p><b>The offer.</b> Alternate the 2-seater (O1) with a desk or room offer (D1, D2, B1). One clear price, one clear CTA.</p></div>
+  <div class="wday hl"><div class="d">Fri</div><p><b>Stories from the floor.</b> Foundry lawn when the weather is kind. Recap, not a hard sell.</p></div>
+  <div class="wday hl"><div class="d">Sat</div><p><b>Village Stay,</b> every second Saturday — midweek work trip one week, weekend stay the next.</p></div>
+  <div class="wday off"><div class="d">Sun</div><p>No marketing. The floor rests, and so does the feed.</p></div>
+ </div>
+</div></section>
+
+<section id="plays" class="alt"><div class="wrap">
+ <div class="eyebrow">4 · Play explorer</div>
+ <h2>All 18 plays, with the caption, the picture, and the thinking.</h2>
+ <p class="lead">Filter by track or status. Open any play to see the mock post, when it runs, the visual direction, and the risks we will not take. Copy is a draft for Christel — she posts, and she can tighten a line.</p>
+ <div class="toolbar"><div class="chips" id="trackChips"></div></div>
+ <div class="toolbar" style="margin-top:0">
+  <div class="chips" id="statusChips"></div>
+  <input type="search" id="q" placeholder="Search plays, captions, channels…" aria-label="Search">
+  <span class="count" id="count"></span>
+ </div>
+ <div class="tgrid" id="tgrid"></div>
+</div></section>
+
+<section id="channels"><div class="wrap">
+ <div class="eyebrow">5 · Channel roles</div>
+ <h2>Each channel has a job. We will not post the same caption everywhere for the sake of it.</h2>
+ <div class="grid g2" style="margin-top:28px">
+  <div class="role reveal"><h3>Instagram</h3><p class="muted small">The main public face. Feed for finished plays (desks, 2-seater, rooms once photographed, tenant intros). Stories for Tuesday coffee, Friday lawn, and real-time room gaps. Reels reserved for the walk-through once we have a real clip.</p></div>
+  <div class="role reveal"><h3>Facebook</h3><p class="muted small">Mirrors the finished feed posts, with slightly fuller captions for an older Stellenbosch audience. Useful for Stay and for event-adjacent community posts, without inventing events we do not host.</p></div>
+  <div class="role reveal"><h3>LinkedIn</h3><p class="muted small">Quiet and professional: 2-seater offices, boardrooms, virtual office, and tenant intros when the tenant wants to be seen there. Sixty-three followers and a long silence means quality over frequency — a post every two weeks is enough until the page has a pulse again.</p></div>
+  <div class="role reveal"><h3>Google Business Profile</h3><p class="muted small">The 2-seater, the two rooms (once photographed), and the tour CTA. This is where practical searches convert. Keep photos honest and hours correct. Do not use it to argue with other venues.</p></div>
+ </div>
+ <p class="lead" style="margin-top:22px">WhatsApp is not a broadcast channel in this plan. Member messages, review asks and follow-ups live in the WhatsApp strategy and the shared inbox. Marketing may point people to +27 63 260 3513; it does not send campaigns from that line.</p>
+</div></section>
+
+<section id="floor" class="alt"><div class="wrap">
+ <div class="eyebrow">6 · Meet the floor</div>
+ <h2>Weekly introductions, including people who have been here for years.</h2>
+ <p class="lead">The first Tuesday intro does not go out until we have a signed yes, a named spokesperson, and logo approval. The list below is a conversation order for Christel and Marius — not a public roster.</p>
+ <table class="t" style="margin-top:22px">
+  <thead><tr><th>Suggested order</th><th>Office</th><th>Note</th></tr></thead>
+  <tbody>
+   <tr><td>Value Chain Solutions</td><td>Office 7</td><td>Ask first.</td></tr>
+   <tr><td>Takenote Trading 245 CC</td><td>Office 8</td><td>Ask second.</td></tr>
+   <tr><td>JDH Projects</td><td>Office 13</td><td>Ask third.</td></tr>
+   <tr><td>African Earth Energy Group</td><td>Office 6</td><td>Ask fourth.</td></tr>
+   <tr><td>BFS Accounting</td><td>— · from 1 December</td><td>Welcome intro once they are on the floor, if they agree.</td></tr>
+   <tr><td>Genwest</td><td>—</td><td>Hold. Do not approach unless they come forward.</td></tr>
+   <tr><td>Atvantage</td><td>—</td><td>Hold and treat as sensitive. Do not approach unless they come forward.</td></tr>
+  </tbody>
+ </table>
+ <div class="facts">
+  <span class="fact">Do not feature <b>Don Hlahla</b> (left 2 Nov)</span>
+  <span class="fact">Schalk spelling &amp; title <b>unverified as of 7 Nov</b></span>
+  <span class="fact">No identifiable <b>children</b> in any frame</span>
+  <span class="fact">Francois’s role wording <b>needs his confirmation</b></span>
+ </div>
+</div></section>
+
+<section id="ads"><div class="wrap">
+ <div class="eyebrow">7 · Ads, photography and hard rules</div>
+ <h2>What we will not reopen, and what has to be true before a post goes out.</h2>
+ <div class="grid g2" style="margin-top:28px">
+  <div>
+   <div class="rule no reveal"><b>Do not</b> offer a standalone free day pass. A free day exists only with a booked tour.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> revive, unpause or reuse the Winter Hot Desk Special 2026.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> pause or cut Virtual Office Google Ads. Judge them from the 7 November 2026 baseline.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> unpause Student Study Space ads without Marius’s written yes.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> write copy that attacks The Village Table, or position us as a Stellenbosch conference venue, hall or retreat.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> make “Hot Desk Lead” the primary conversion. The website lead form stays primary; WhatsApp is Contact.</div>
+   <div class="rule no reveal" style="margin-top:10px"><b>Do not</b> present generated images as the space. Real photos and clips only. Yuri is proposed, not booked.</div>
+  </div>
+  <div>
+   <div class="rule reveal"><b>Do</b> quote Hub prices excluding VAT, as they stand on <a href="https://villagehub.co.za/pricing.html" target="_blank" rel="noopener">villagehub.co.za/pricing</a> that week. Student prices include VAT — say so.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Do</b> use only +27 63 260 3513 in public. Never Christel’s or Marius’s personal numbers.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Do</b> keep captions going to Christel, CC Marius — not Francois — and let her post.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Do</b> log live site, ads and contact changes in the Village Hub change log before they go out, unless Hub Desk already has standing authority.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Do</b> use existing real photography (reception, kitchen, offices, The Foundry, the 23 January stills) and the footage folder for clips that actually exist.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Do</b> keep Village Hub work separate from GrowthBox, Truth Real Estate and the music projects.</div>
+   <div class="rule reveal" style="margin-top:10px"><b>Shoot first, this week:</b> a 2-seater, both meeting rooms, and a 20–30 second walk-through of the floor. Until those exist, those plays stay in draft.</div>
+  </div>
+ </div>
+ <p class="muted small" style="margin-top:18px">Existing footage: <a href="https://drive.google.com/drive/folders/1Bb6Gir1UoRPJ5gfR_sOkNzzqFCCAHvov" target="_blank" rel="noopener">Village Hub footage folder ↗</a></p>
+</div></section>
+
+<section id="team" class="dark"><div class="wrap">
+ <div class="eyebrow">8 · Who does what, and the sign-off</div>
+ <h2>A person still presses Post.</h2>
+ <p class="lead">HUB Marketing drafts the plan, the captions and the visual briefs. Christel is the floor driver and the person who posts. Marius is notified, and anything that spends money, changes the site or changes member contact waits for his written yes.</p>
+ <div class="grid g3" style="margin-top:28px">
+  <div class="card reveal"><h3>HUB Marketing</h3><p class="muted small">Owns outbound content and posting strategy for Facebook, Instagram, LinkedIn, Google Business Profile, and anything else that goes out in public. Drafts this page, the captions and the shoot list. Does not auto-publish.</p></div>
+  <div class="card reveal"><h3>Christel</h3><p class="muted small">Approves and posts every social caption. Hosts Tuesday coffee and tenant conversations on the floor. First eyes on a low rating or a difficult comment. The public never sees a post she has not accepted.</p></div>
+  <div class="card reveal"><h3>Marius</h3><p class="muted small">Signs off spend, ads, site changes and anything that touches member contact beyond Hub Desk’s standing work. Is copied on caption emails. Is notified, not asked to post.</p></div>
+ </div>
+ <h3 style="margin-top:36px">Before the first week goes live</h3>
+ <ul class="check">
+  <li>Christel agrees the weekly rhythm and the first two captions (a Tuesday floor moment, and a Thursday 2-seater or day-pass offer).</li>
+  <li>A real photograph of a 2-seater is in hand, or we hold O1 and lead with D1 on a real open-floor photo instead.</li>
+  <li>Boardroom and Chamber plays stay in draft until real room photos exist.</li>
+  <li>At least one tenant has said yes in writing before we announce a weekly introduction series.</li>
+  <li>Prices are checked against the live pricing page on the day the caption is sent.</li>
+  <li>Village Stay listing facts (children, check-in, enquiry path) are agreed before S1/S2 are pushed hard.</li>
+  <li>Caption email goes to Christel, CC Marius, from the Hub side — ready to copy, not as a strategy essay.</li>
+ </ul>
+ <p class="muted" style="margin-top:22px">Hub Desk remains the operations owner (Spacebring, occupancy, the WhatsApp member journey). This page is the marketing companion to that work, not a second operations plan.</p>
+</div></section>
+
+<footer>
+ <div class="wrap">
+  <img src="assets/logo.png" alt="">
+  <div>
+   <b style="color:#fff;font-family:var(--serif);font-size:1.05rem">The Village Hub</b><br>
+   Content &amp; social strategy · November 2026 · Recommendation only<br>
+   Nooitgedacht Village, Stellenbosch · <a href="https://villagehub.co.za" target="_blank" rel="noopener" style="color:var(--gold2)">villagehub.co.za</a>
+  </div>
+  <div style="margin-left:auto;max-width:360px">
+   Companion page: <a href="https://villagehub-wa-strategy-2026.netlify.app/" target="_blank" rel="noopener" style="color:var(--gold2)">WhatsApp member-journey strategy</a>. Share this link with the team. It is not a public campaign and should not be indexed.
+  </div>
+ </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dhead">
+    <button class="dnav" id="prevPlay" type="button">←</button>
+    <h3 id="dTitle">Play</h3>
+    <button class="dnav first" id="nextPlay" type="button">→</button>
+    <button class="x" id="closePlay" type="button" aria-label="Close">×</button>
+  </div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+
+<script>
+const PLAYS = [{"id": "D1", "track": "desks", "trackLabel": "Hot desks", "status": "now", "statusLabel": "Push now", "name": "Day-pass Tuesday", "when": "Every Tuesday offer post, starting this month", "channel": "Instagram + Facebook", "hook": "A real desk, a real day, a simple price.", "visual": "A wide, honest shot of a hot desk in use — laptop, coffee, garden light. Use a real photo from the floor, never a generated stand-in.", "photo": "assets/office.jpg", "needShoot": false, "caption": "Need a Stellenbosch desk for the day?\n\nHot desk day pass, R250 excl. VAT. Half day R150. Hourly R60.\nWanderer (5 days) from R1,000. Sit among the tenants, use the kitchen, stay as long as the work needs.\n\nBook a tour or a desk at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Offices are quite full. The open floor still has room, and day-pass and short-stay desks are the fastest way to fill it. Lead with the day pass, then show the ladder up to Wanderer, Visitor, Local and Resident so a good day can become a plan.", "risk": "Do not present the day pass as if it were a private office, and do not quote the R7,500 2-seater price here."}, {"id": "D2", "track": "desks", "trackLabel": "Hot desks", "status": "now", "statusLabel": "Push now", "name": "Tour + free day, always together", "when": "Thursday offer post, once this month, then as needed", "channel": "Instagram + Facebook + Google Business Profile", "hook": "Come and walk the floor. If it fits, the first day’s on us.", "visual": "Christel or Marius walking a guest from reception into the open floor. Faces only with consent.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot this week: a real tour on the floor", "caption": "Come and see The Village Hub.\n\nBook a tour and your first hot-desk day is included — only with the tour, never on its own.\n\nWe’ll walk the floor, the kitchen, the boardrooms and the garden, and tell you plainly whether a desk or a 2-seater is the right fit.\n\nBook a viewing at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "A free day pass on its own was tried and is closed. Pairing it with a tour earns the visit, protects yield, and gets a serious look at the space. Say the condition in the caption, not only in the fine print.", "risk": "Never offer a standalone free day. Do not revive the Winter Hot Desk Special 2026."}, {"id": "D3", "track": "desks", "trackLabel": "Hot desks", "status": "later", "statusLabel": "Later", "name": "Student desks, in season only", "when": "Organic only when exam dates are close. Student Study Space ads stay paused.", "channel": "Instagram Stories + Facebook", "hook": "A quiet desk when the library is full.", "visual": "A quiet corner of the open floor, no identifiable students under 18, no school branding.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot only if we run this: a quiet desk, no identifiable minors", "caption": "Exam season in Stellenbosch is loud. The Hub is not.\n\nStudent day and week rates are on villagehub.co.za/pricing — student prices already include VAT.\n\nCome for a tour first, then settle in for the stretch.", "cta": "See student prices · villagehub.co.za/pricing.html", "thinking": "Student ads stay paused. This is a light organic mention only, timed to real exam pressure, not a new campaign. Student prices include VAT — say so, and do not mix them with the excl-VAT adult ladder.", "risk": "No identifiable children. Do not unpause Student Study Space ads without Marius’s written yes."}, {"id": "O1", "track": "offices", "trackLabel": "2-seater offices", "status": "now", "statusLabel": "Push now", "name": "The 2-seater, plainly priced", "when": "Thursday offer, weekly until Offices 9, 10, 11 or 13 are let", "channel": "Instagram + Facebook + LinkedIn + Google Business Profile", "hook": "A door, two desks, R7,500 a month excl. VAT.", "visual": "A real 2-seater office: two desks, the door, natural light. Not a wide open-floor shot, and not a generated room.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot this week: Office 9, 10, 11 or 13, empty or with consent", "caption": "A door of your own, without leaving the floor.\n\nOur 2-seater private offices — Offices 9, 10, 11 and 13 — are R7,500 a month excluding 15% VAT.\n\nYou stay inside The Village Hub: kitchen, boardrooms, the garden, the people.\n\nBook a viewing at villagehub.co.za", "cta": "Book a viewing · villagehub.co.za", "thinking": "This is the one office product still to fill. The old R6,950 figure is retired — always quote R7,500 excl. VAT. Larger offices are quite full, so do not talk as if the whole building is empty. Show a 2-seater, not a hot desk, and not a 4- or 6-seater.", "risk": "Do not use R6,950. Do not let this caption be read as a hot-desk price."}, {"id": "B1", "track": "rooms", "trackLabel": "Boardrooms", "status": "now", "statusLabel": "Push now", "name": "Boardroom after work", "when": "Thursday offer, most weeks", "channel": "Instagram + Facebook + LinkedIn", "hook": "The room is ready. The drive back to town can wait.", "visual": "The Village Boardroom set for a late meeting: table, chairs, late light. Needs a real photograph — we do not yet have one good enough to post.", "photo": null, "needShoot": true, "needLabel": "Shoot first: Village Boardroom, real room, real light", "caption": "Need the room after 17:00?\n\nThe Village Boardroom (12 seats) sits on the floor at Nooitgedacht. Park once, meet properly, and skip the late drive into town.\n\nAsk us for a same-week slot — WhatsApp +27 63 260 3513, or book via villagehub.co.za", "cta": "WhatsApp +27 63 260 3513 · or book on the site", "thinking": "Boardrooms are the strong second push. After-work is a real Stellenbosch pain: people already out at Nooitgedacht, or unwilling to go back to the CBD. We have had only a handful of room bookings in the last 30 days, so this has to be visible every week. Do not invent a conference-venue positioning.", "risk": "Do not post until a real boardroom photo is in hand. Do not use the current generated room images."}, {"id": "B2", "track": "rooms", "trackLabel": "Boardrooms", "status": "now", "statusLabel": "Push now", "name": "Chamber or Boardroom", "when": "Once in the next two weeks, then as a static GBP photo + caption", "channel": "Google Business Profile + Instagram", "hook": "Ten seats or twelve. Pick the room that fits the meeting.", "visual": "A honest pair of real photos: Village Chamber (10) and Village Boardroom (12), labelled clearly.", "photo": null, "needShoot": true, "needLabel": "Shoot first: both rooms, labelled, no generated images", "caption": "Two rooms, on the same floor.\n\nThe Village Chamber, 10 seats. The Village Boardroom, 12 seats. Both at The Village Hub, Nooitgedacht Village.\n\nTell us the size of the meeting and we’ll point you to the right one.\n\nWhatsApp +27 63 260 3513", "cta": "WhatsApp +27 63 260 3513", "thinking": "People searching Google often do not know we have two rooms, or which one they need. A clear side-by-side on Google Business Profile does quiet, useful work. Wait for real photography.", "risk": "No AI room photography. No ‘Stellenbosch conference venue’ or hall/retreat language."}, {"id": "B3", "track": "rooms", "trackLabel": "Boardrooms", "status": "later", "statusLabel": "Later", "name": "Mid-morning weekday gap", "when": "Only when the diary actually has a mid-morning gap — not as a standing discount", "channel": "Instagram Stories + WhatsApp status (business line only)", "hook": "The Boardroom is free tomorrow morning.", "visual": "A simple Stories frame over a real room photo, with the genuine open slot and no fake urgency.", "photo": null, "needShoot": true, "needLabel": "Needs a real room photo, and a real gap in the diary", "caption": "A mid-morning gap in the Village Boardroom.\n\nIf your team needs the room this week, WhatsApp us on +27 63 260 3513 and we’ll hold it.", "cta": "WhatsApp +27 63 260 3513", "thinking": "This is a fill-the-gap story, not a price cut and not a campaign. Only run it when Spacebring shows a real opening. Hub Desk can flag the gap; marketing writes the story.", "risk": "Do not invent availability. Do not turn this into a standing midweek special."}, {"id": "T1", "track": "tenants", "trackLabel": "Meet the floor", "status": "yes", "statusLabel": "After a signed yes", "name": "Weekly tenant introduction", "when": "Every Tuesday, once the first tenant has said yes in writing", "channel": "Instagram + Facebook + LinkedIn, then Stories", "hook": "The people on this floor are the reason to be here.", "visual": "One real portrait or workplace shot, approved by the tenant, with their logo only if they have signed off the file.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot after a signed yes: portrait, name, one-line what they do", "caption": "Meet someone on the floor.\n\n[Name] of [Company] works from The Village Hub. [One honest line about the work.]\n\nThis is what a membership here actually looks like — neighbours, not only desks.\n\nWant a tour? villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Weekly introductions include long-standing tenants, not only new arrivals. That is how the floor feels alive. Nothing goes out without a signed yes, a named spokesperson, and logo approval. Suggested first conversations (not a public list until they agree): Value Chain Solutions (Office 7), Takenote Trading 245 CC (Office 8), JDH Projects (Office 13), African Earth Energy Group (Office 6), then BFS Accounting from 1 December. Genwest and Atvantage stay off the list unless they come forward.", "risk": "Do not feature Don Hlahla (left 2 Nov). Schalk’s spelling and title were unverified as of 7 Nov. No post without a signed yes."}, {"id": "T2", "track": "tenants", "trackLabel": "Meet the floor", "status": "yes", "statusLabel": "After a signed yes", "name": "Member-to-member asks", "when": "Once a month, after two or three intros have run", "channel": "Instagram Stories + a short feed recap", "hook": "The floor can help. Ask it something useful.", "visual": "A simple Stories prompt over a warm floor photo, plus the week’s approved tenant face if they agree to be the ‘asker’.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "A question from the floor this month:\n\n[Tenant-approved question — a hire, a supplier, a collaboration, a local recommendation.]\n\nIf you can help, WhatsApp The Village Hub on +27 63 260 3513 and we’ll make the introduction.", "cta": "WhatsApp +27 63 260 3513", "thinking": "Community is more than portraits. A real ask, from a real member, gives people a reason to talk to each other and shows prospects that the floor is useful. The question must be written with the tenant, not invented for them.", "risk": "No unsanctioned name, need, or logo. Route replies through the business WhatsApp, never a personal number."}, {"id": "C1", "track": "community", "trackLabel": "Community", "status": "now", "statusLabel": "Push now", "name": "Tuesday coffee on the floor", "when": "A standing Tuesday story, plus a feed post in week one", "channel": "Instagram Stories, then a short Facebook recap", "hook": "Same floor, same Tuesday, a real cup of coffee.", "visual": "The kitchen or lounge in the morning, steam and light, people only with consent.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot a real Tuesday morning in the kitchen or lounge", "caption": "Tuesday morning at The Village Hub.\n\nIf you’re on the floor, come through to the kitchen. If you’ve been meaning to see the space, book a tour and join us for a cup.\n\nvillagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "We do not need a new event brand. A standing, low-effort Tuesday coffee is enough to give the week a heartbeat and a reason to introduce a tenant the same day (T1).", "risk": "Don’t over-produce it. Don’t announce a packed event if only three people are there."}, {"id": "C2", "track": "community", "trackLabel": "Community", "status": "now", "statusLabel": "Push now", "name": "Friday on the Foundry lawn", "when": "Friday Stories most weeks, when the weather is kind", "channel": "Instagram Stories + Facebook", "hook": "The work can wait ten minutes. The lawn is right here.", "visual": "The Foundry lawn in late-afternoon light. Real photo — we already have a good one.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "Friday afternoon at Nooitgedacht.\n\nThe Foundry lawn sits next to The Village Hub. If you’re on a day pass or a membership, this is part of the day — not a special occasion.\n\nSee the floor: villagehub.co.za", "cta": "See the floor · villagehub.co.za", "thinking": "The garden is one of the Hub’s real advantages. Show it often, honestly, without turning every Friday into a festival. This also quietly supports Village Stay, because guests stay in the same precinct.", "risk": "Do not imply a public event or a partnership we have not agreed."}, {"id": "C3", "track": "community", "trackLabel": "Community", "status": "later", "statusLabel": "Later", "name": "Bring a colleague", "when": "Once members have had a Tuesday coffee they can invite someone to", "channel": "Instagram + a note Christel can forward on the business WhatsApp", "hook": "If the floor works for you, bring the person it might work for next.", "visual": "Two people at a desk or on a tour, both with consent.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot later: two consenting people on the floor, not a posed stock pair", "caption": "Know someone who needs a Stellenbosch desk or a small office?\n\nBring them on a tour. We’ll show the floor properly, and if a hot desk is the right start, the first day can be included with that tour.\n\nBook at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Referral works here because the floor is already social. Keep the offer aligned with D2: a tour can include a first day, never a free day on its own. Members are asked, not bribed.", "risk": "No standalone free passes as a referral reward. No personal WhatsApp numbers in the post."}, {"id": "C4", "track": "community", "trackLabel": "Community", "status": "gap", "statusLabel": "Needs a shoot", "name": "A real walk-through of the floor", "when": "As soon as we have a 20–30 second clip from a real walk, not a generated video", "channel": "Instagram Reels, Facebook, Google Business Profile, LinkedIn", "hook": "This is the walk from reception to a desk, in real light.", "visual": "Handheld or simple gimbal: reception, open floor, a 2-seater door, a boardroom threshold, kitchen, garden. No voiceover promises we cannot keep.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Priority shoot: a real 20–30s walk-through. Yuri is proposed, not booked.", "caption": "A quiet walk through The Village Hub, Nooitgedacht Village.\n\nDesks, 2-seater offices, boardrooms, the kitchen, the garden. Come and do this walk with us.\n\nBook a tour: villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "This is the single most useful piece of content we do not yet have. It serves every track. Existing footage lives in the shared Drive folder — use only what is real. Yuri has been proposed as videographer and is not booked until Marius says so.", "risk": "Never present a generated or heavily staged walk-through as the space. No identifiable children in the background."}, {"id": "C5", "track": "community", "trackLabel": "Community", "status": "later", "statusLabel": "Later", "name": "Quiet hours in exam season", "when": "Only in the stretch before exams, organic only", "channel": "Instagram + Stories", "hook": "The Hub stays quiet when town does not.", "visual": "An empty-feeling desk at first light. No young faces we cannot clearly show.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Only if we run it: early-morning floor, no identifiable minors", "caption": "Stellenbosch gets noisy in exam season. This floor does not.\n\nIf you need a settled desk, book a tour and start with a day pass — or ask us about the student rates, which already include VAT.\n\nvillagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "This supports D3 without turning into a student ad campaign. The tone is hospitality, not hustle. Student Study Space ads remain paused.", "risk": "No identifiable children. Do not unpause student ads from a caption."}, {"id": "S1", "track": "stay", "trackLabel": "Village Stay", "status": "now", "statusLabel": "Push now", "name": "Stay midweek, work downstairs", "when": "Every second Saturday, and one midweek Stories mention", "channel": "Instagram + Facebook, with a cross-mention in desk posts where it is natural", "hook": "Sleep at Village Stay. Work at The Village Hub. Same village.", "visual": "A real Stay interior or patio, then a cut or carousel to the Hub floor or the Foundry lawn. Only real property photos.", "photo": "assets/foundry-lawn.jpg", "needShoot": true, "needLabel": "Use approved Village Stay photos; shoot a ‘door to desk’ walk if we can", "caption": "Working in Stellenbosch for a few days?\n\nStay at Village Stay, Nooitgedacht Village, and take a hot desk downstairs at The Village Hub. Day pass R250 excl. VAT, or start with a tour and a first day included.\n\nStay: enquire via villagehub.co.za · Desk: the same.", "cta": "Enquire · villagehub.co.za", "thinking": "Village Stay and the Hub are neighbours in the same precinct — that is the offer. Do not blur the two businesses, and do not put Stay enquiries into the coworking WhatsApp journey as if they were desk leads. The site and Stay channels take the booking; marketing just tells the story.", "risk": "Watch listing details (children, check-in times) — they have been inconsistent. Do not invent house rules in a caption."}, {"id": "S2", "track": "stay", "trackLabel": "Village Stay", "status": "now", "statusLabel": "Push now", "name": "A Stellenbosch weekend, with a desk if you need one", "when": "Every second Saturday (alternating with S1)", "channel": "Instagram + Facebook", "hook": "A quiet weekend in the village. The desk is there on Monday if the trip runs over.", "visual": "Late light on the Foundry lawn or a real Stay bedroom/living shot, approved for marketing use.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "A Stellenbosch weekend that stays in the village.\n\nVillage Stay is at Nooitgedacht, next to The Village Hub. Arrive, settle, walk out onto the lawn. If the week begins before you leave, a hot desk is downstairs.\n\nAsk us about dates on villagehub.co.za", "cta": "Ask about dates · villagehub.co.za", "thinking": "Weekend demand and midweek desk demand can serve each other without forcing a package we have not priced. Keep the language hospitable and specific to this precinct, not generic ‘luxury stay’ copy.", "risk": "Do not invent a bundled stay-and-desk rate unless Marius has signed the price off."}, {"id": "S3", "track": "stay", "trackLabel": "Village Stay", "status": "gap", "statusLabel": "Needs a fix", "name": "Get the Stay listing straight", "when": "Before we spend harder on Stay content", "channel": "Internal first, then the public listing and website", "hook": "What we publish has to match the house.", "visual": "Not a public post. This is a hygiene play: photos, children policy, check-in times, and contact paths must agree.", "photo": null, "needShoot": false, "caption": "(No public caption until the listing, the website and the enquiry path say the same thing about children, check-in and how to book.)", "cta": "Internal fix first", "thinking": "Inconsistent listing details will undercut every Stay post we run. Hub Desk and whoever owns the Stay listing should align the facts; marketing will then use only the agreed lines. Stay enquiries should not be dropped into the coworking WhatsApp member journey.", "risk": "Do not advertise house rules we have not confirmed. Do not mix Stay inboxes with desk automations."}, {"id": "V1", "track": "virtual", "trackLabel": "Virtual office", "status": "later", "statusLabel": "Later", "name": "A Stellenbosch business address, quietly told", "when": "One supporting post a month. Do not pause or cut the live Virtual Office Google Ads.", "channel": "LinkedIn + Google Business Profile, occasional Instagram", "hook": "A real village address, without a desk you do not need yet.", "visual": "Reception, the building, or the village entrance — a real photograph of the address you are selling.", "photo": "assets/hero-reception.jpg", "needShoot": false, "caption": "Need a Stellenbosch business address, with mail handled on the floor?\n\nThe Village Hub’s virtual office sits at Nooitgedacht Village. When you are ready for a desk or a 2-seater, the same floor is here.\n\nAsk us at villagehub.co.za, or WhatsApp +27 63 260 3513.", "cta": "Ask us · villagehub.co.za", "thinking": "Virtual Office Google Ads stay live and are judged from the 7 November 2026 baseline. Organic content should support that, not compete with desk posts, and must not become the primary conversion path. The website lead form remains the primary conversion; WhatsApp is a contact route.", "risk": "Do not pause, cut or rebuild Virtual Office ads. Do not make ‘Hot Desk Lead’ the primary conversion in any ad copy we recommend."}];
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TRACKS = [
+  ['all','All plays'],
+  ['desks','Hot desks'],
+  ['offices','2-seaters'],
+  ['rooms','Boardrooms'],
+  ['tenants','Meet the floor'],
+  ['community','Community'],
+  ['stay','Village Stay'],
+  ['virtual','Virtual office']
+];
+const STATUSES = [
+  ['all','All statuses'],
+  ['now','Push now'],
+  ['yes','After a signed yes'],
+  ['later','Later'],
+  ['gap','Needs a shoot or a fix']
+];
+const STCLASS = {now:'st-now', yes:'st-yes', later:'st-later', gap:'st-gap'};
+let state = {track:'all', status:'all', q:''};
+let openId = null;
+
+function renderPost(p, opts={}) {
+  const need = p.needShoot;
+  const bg = p.photo ? `style="background-image:url('${esc(p.photo)}')"` : '';
+  const shot = need
+    ? `<div class="need"><span>Visual direction</span><b>${esc(p.needLabel || p.visual)}</b></div>`
+    : (opts.short ? '' : `<div class="need"><span>Visual</span><b>${esc(p.visual)}</b></div>`);
+  return `<div class="post"><div class="screen">
+    <div class="pbar">
+      <img src="assets/logo.png" alt="">
+      <div><div class="nm">thevillagehub</div><div class="ch">${esc(p.channel)}</div></div>
+    </div>
+    <div class="photo" ${bg}>${shot}</div>
+    <div class="acts">♡  ♡   lev </div>
+    <div class="cap"><b>thevillagehub</b> ${esc(p.caption)}<span class="cta-line">${esc(p.cta)}</span></div>
+  </div></div>`;
+}
+
+function heroPost() {
+  const p = PLAYS.find(x => x.id === 'O1');
+  $('#heroPhone').innerHTML = renderPost(p, {short:true});
+}
+
+function chips() {
+  $('#trackChips').innerHTML = TRACKS.map(([id,label]) => {
+    const n = id==='all' ? PLAYS.length : PLAYS.filter(p => p.track===id).length;
+    return `<button class="chip${state.track===id?' on':''}" type="button" data-track="${id}">${label} <span class="c">${n}</span></button>`;
+  }).join('');
+  $('#statusChips').innerHTML = STATUSES.map(([id,label]) => {
+    const n = id==='all' ? PLAYS.length : PLAYS.filter(p => p.status===id).length;
+    return `<button class="chip${state.status===id?' on':''}" type="button" data-status="${id}">${label} <span class="c">${n}</span></button>`;
+  }).join('');
+  $$('#trackChips .chip').forEach(b => b.onclick = () => {state.track=b.dataset.track; render();});
+  $$('#statusChips .chip').forEach(b => b.onclick = () => {state.status=b.dataset.status; render();});
+}
+
+function filtered() {
+  const q = state.q.trim().toLowerCase();
+  return PLAYS.filter(p => {
+    if (state.track !== 'all' && p.track !== state.track) return false;
+    if (state.status !== 'all' && p.status !== state.status) return false;
+    if (!q) return true;
+    return (p.id + ' ' + p.name + ' ' + p.caption + ' ' + p.hook + ' ' + p.channel + ' ' + p.thinking).toLowerCase().includes(q);
+  });
+}
+
+function render() {
+  chips();
+  const list = filtered();
+  $('#count').textContent = list.length + ' of ' + PLAYS.length;
+  $('#tgrid').innerHTML = list.map(p => `<button class="tcard reveal" type="button" data-id="${esc(p.id)}">
+    <span class="id">${esc(p.id)}</span>
+    <span class="st ${STCLASS[p.status]}">${esc(p.statusLabel)}</span>
+    <h4>${esc(p.name)}</h4>
+    <div class="tm">${esc(p.hook)}</div>
+    <div class="tags"><span class="tag">${esc(p.trackLabel)}</span><span class="tag">${esc(p.channel.split('+')[0].trim())}</span></div>
+  </button>`).join('') || '<p class="muted">No plays match that filter.</p>';
+  $$('#tgrid .tcard').forEach(b => b.onclick = () => openPlay(b.dataset.id));
+}
+
+function openPlay(id) {
+  const i = PLAYS.findIndex(p => p.id === id);
+  if (i < 0) return;
+  const p = PLAYS[i];
+  openId = id;
+  $('#dTitle').textContent = p.id + ' · ' + p.name;
+  $('#dbody').innerHTML = `
+    <div>
+      <p class="lead" style="margin-top:0">${esc(p.hook)}</p>
+      <dl class="dl">
+        <dt>Status</dt><dd><span class="st ${STCLASS[p.status]}">${esc(p.statusLabel)}</span></dd>
+        <dt>Track</dt><dd>${esc(p.trackLabel)}</dd>
+        <dt>When</dt><dd>${esc(p.when)}</dd>
+        <dt>Channel</dt><dd>${esc(p.channel)}</dd>
+        <dt>Visual</dt><dd>${esc(p.visual)}</dd>
+        <dt>Thinking</dt><dd>${esc(p.thinking)}</dd>
+        <dt>Watch-out</dt><dd>${esc(p.risk)}</dd>
+        <dt>CTA</dt><dd>${esc(p.cta)}</dd>
+      </dl>
+    </div>
+    <div>${renderPost(p)}</div>`;
+  $('#drawer').classList.add('open');
+  $('#scrim').classList.add('open');
+  $('#drawer').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlay() {
+  $('#drawer').classList.remove('open');
+  $('#scrim').classList.remove('open');
+  $('#drawer').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  openId = null;
+}
+
+function step(dir) {
+  const list = filtered();
+  let i = list.findIndex(p => p.id === openId);
+  if (i < 0) i = 0;
+  i = (i + dir + list.length) % list.length;
+  openPlay(list[i].id);
+}
+
+$('#closePlay').onclick = closePlay;
+$('#scrim').onclick = closePlay;
+$('#prevPlay').onclick = () => step(-1);
+$('#nextPlay').onclick = () => step(1);
+document.addEventListener('keydown', e => {
+  if (!$('#drawer').classList.contains('open')) return;
+  if (e.key === 'Escape') closePlay();
+  if (e.key === 'ArrowLeft') step(-1);
+  if (e.key === 'ArrowRight') step(1);
+});
+$('#q').addEventListener('input', e => {state.q = e.target.value; render();});
+
+/* nav */
+const nav = $('#nav'), links = $('#navlinks'), btn = $('#menuBtn');
+btn.onclick = () => {
+  const on = links.classList.toggle('open');
+  btn.setAttribute('aria-expanded', on);
+};
+links.addEventListener('click', e => { if (e.target.tagName === 'A') links.classList.remove('open'); });
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 8);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  $('#progress').style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+}, {passive:true});
+const secs = [...$$('section[id], header[id]')];
+const spy = () => {
+  const y = scrollY + 80;
+  let cur = secs[0];
+  secs.forEach(s => { if (s.offsetTop <= y) cur = s; });
+  $$('.navlinks a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur.id));
+};
+window.addEventListener('scroll', spy, {passive:true});
+
+/* counters — skip non-numeric */
+if ('IntersectionObserver' in window && !RM) {
+  const co = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, n = +el.dataset.count;
+    if (!n) return;
+    let s = null;
+    const f = ts => {
+      s = s || ts;
+      const p = Math.min(1, (ts - s) / 1200);
+      el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(f);
+    };
+    el.textContent = '0';
+    requestAnimationFrame(f);
+    co.unobserve(el);
+  }), {threshold:.4});
+  $$('[data-count]').forEach(e => co.observe(e));
+}
+
+/* reveal */
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  // cards already have .reveal; ensure a fallback
+}
+
+heroPost();
+render();
+</script>
+</body>
+</html>
