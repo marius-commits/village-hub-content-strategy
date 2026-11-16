@@ -354,7 +354,8 @@ table.t td.num{text-align:right;font-variant-numeric:tabular-nums}
 .dayrow.hl{border-color:var(--gold)}
 .tagp{display:inline-block;font:600 .66rem var(--sans);padding:3px 7px;border-radius:6px;background:#efe6d8;color:var(--brown);margin-right:4px;vertical-align:1px}
 .pcards{display:grid;gap:22px;margin-top:22px}
-.pcard{display:grid;grid-template-columns:300px 1fr;gap:24px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px}
+.pcard{display:flex;flex-direction:column;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px}
+.pcard .pbody{display:grid;grid-template-columns:300px 1fr;gap:24px}
 .pcard .pimg{border-radius:14px;aspect-ratio:4/5;background:#d9cbb6 center/cover no-repeat;position:relative;overflow:hidden}
 .pcard .pimg .lbl2{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(42,27,14,.78);color:#fff;font-size:.74rem;padding:8px 10px;border-radius:10px}
 .pcard .pimg.need{display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:repeating-linear-gradient(135deg,#efe6d8,#efe6d8 12px,#f6efe3 12px,#f6efe3 24px);color:var(--brown);font:600 .95rem var(--serif)}
@@ -398,7 +399,7 @@ details.article[open] summary:after{content:" －"}
 .bigdiv .wrap{border-top:2px solid var(--gold);padding-top:26px}
 .bigdiv .eyebrow{margin-bottom:6px}
 .bigdiv h2{font-size:clamp(1.5rem,2.6vw,2rem)}
-@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}.pcard{grid-template-columns:1fr}.pcard .pimg{aspect-ratio:16/10}.road{grid-template-columns:1fr 1fr}}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}.pcard .pbody{grid-template-columns:1fr}.pcard .pimg{aspect-ratio:16/10}.road{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.dayrow{grid-template-columns:1fr}.asset{grid-template-columns:30px 1fr}.asset .aid{grid-column:2}.asset > div:nth-child(3),.asset .due{grid-column:2}.tl{grid-template-columns:1fr}.road{grid-template-columns:1fr}}
 @media print{.cbtn,#platChips{display:none}.pcard{break-inside:avoid}}
 
@@ -465,6 +466,46 @@ details.article[open] summary:after{content:" －"}
 /* Approval captions must stay visible even if the scroll-in animation never fires. */
 #captions .pcard.reveal{opacity:1;transform:none}
 
+
+/* Caption review controls on each planned post */
+.preview{background:rgba(42,36,28,.04);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.review-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.review-who{font:600 .78rem var(--sans);color:var(--brown);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.review-who:hover{color:var(--brown2,#6B4423)}
+.review-status{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
+.review-empty{margin:0;font-size:.82rem;color:var(--muted)}
+.review-line{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;border-left-width:3px}
+.review-line.ok{border-left-color:#1f5c45}
+.review-line.edit{border-left-color:#8a3220}
+.review-line-h{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.review-line-h b{font:600 .86rem var(--sans);color:#2A241C}
+.review-line-h span{font-size:.75rem;color:var(--muted)}
+.review-note{margin:4px 0 0;font-size:.86rem;color:#2A241C;white-space:pre-wrap}
+.review-box{display:block;margin-top:4px}
+.review-box span{display:block;font:700 .66rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--brown);margin-bottom:6px}
+.review-box textarea{width:100%;box-sizing:border-box;font:400 .9rem/1.4 var(--sans);color:#2A241C;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;min-height:72px}
+.review-box textarea:focus{outline:2px solid rgba(107,68,35,.35);outline-offset:1px}
+.review-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.review-btn{font:700 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:2px;cursor:pointer}
+.review-btn:disabled{opacity:.55;cursor:wait}
+.review-btn.ok{background:#1f5c45;color:#fff;border:1px solid #1f5c45}
+.review-btn.ok:hover{background:#174a38}
+.review-btn.edit{background:#F4EBD9;color:#8B2E2E;border:1px solid #8B2E2E}
+.review-btn.edit:hover{background:#8B2E2E;color:#F4EBD9}
+.review-err{margin:0;font-size:.8rem;color:#8a3220;flex:1 1 180px}
+.review-safe{font-size:.75rem;color:var(--muted);margin:8px 0 0}
+.review-banner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff3d4;border:1px solid rgba(122,90,18,.35);color:#7a5a12;border-radius:12px;padding:12px 14px;margin:16px 0 0}
+.review-banner[hidden]{display:none}
+.review-banner p{margin:0;flex:1;font-size:.86rem}
+.review-dlg{position:fixed;inset:0;background:rgba(42,36,28,.55);display:none;align-items:center;justify-content:center;z-index:80;padding:20px}
+.review-dlg.on{display:flex}
+.review-dlg-card{background:var(--paper);padding:28px 28px 24px;border-radius:16px;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.review-dlg-card h3{margin:0 0 8px;font-family:var(--serif)}
+.review-dlg-card p{margin:0 0 16px;color:var(--muted);font-size:.92rem}
+.review-dlg-btns{display:flex;flex-wrap:wrap;gap:8px}
+.review-dlg-btns button{font:700 .8rem var(--sans);letter-spacing:.04em;padding:10px 16px;border-radius:2px;cursor:pointer;background:#2A241C;color:#F8F1E5;border:1px solid #2A241C}
+.review-dlg-btns button:hover{background:#6B4423;border-color:#6B4423}
+
 </style>
 </head>
 <body>
@@ -474,9 +515,9 @@ details.article[open] summary:after{content:" －"}
  <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu ☰</button>
  <div class="navlinks" id="navlinks">
   <a href="#plan">1 This week</a>
-  <a href="#report">2 Report</a>
-  <a href="#captions">3 Captions</a>
-  <a href="#assets">4 Assets</a>
+  <a href="#captions">2 Captions</a>
+  <a href="#assets">3 Assets</a>
+  <a href="#report">4 Report</a>
   <a href="#seo">5 SEO</a>
   <a href="#ads">6 Ads &amp; leads</a>
   <a href="#strategy">7 Strategy</a>
@@ -543,15 +584,345 @@ details.article[open] summary:after{content:" －"}
 <section id="howto" class="alt" style="padding:44px 0"><div class="wrap">
  <div class="grid g4">
   <div class="card"><div class="ico">🗓️</div><h3>1 · Work the diary</h3><p class="muted small">This week’s plan sits at the top. Tick what’s done, and upload shots into that item’s Drive folder.</p></div>
-  <div class="card"><div class="ico">📊</div><h3>2 · Read the report</h3><p class="muted small">Occupancy, leads, ads, search and social. Real numbers only, each with its source and date.</p></div>
-  <div class="card"><div class="ico">✍️</div><h3>3 · Approve captions</h3><p class="muted small">Copy per platform, with a copy button. Christel and Marius say yes together; Christel posts.</p></div>
-  <div class="card"><div class="ico">🎥</div><h3>4 · Film the assets</h3><p class="muted small">Each shot has its own Drive folder. Drop the files in and we can use them on the next post.</p></div>
+  <div class="card"><div class="ico">✍️</div><h3>2 · Approve captions</h3><p class="muted small">Copy per platform, with a copy button. Christel and Marius say yes together; Christel posts.</p></div>
+  <div class="card"><div class="ico">🎥</div><h3>3 · Film the assets</h3><p class="muted small">Each shot has its own Drive folder. Drop the files in and we can use them on the next post.</p></div>
+  <div class="card"><div class="ico">📊</div><h3>4 · Read the report</h3><p class="muted small">Occupancy, leads, ads, search and social. Real numbers only, each with its source and date.</p></div>
  </div>
 </div></section>
 
-<!-- ============ 1 REPORT ============ -->
+<!-- ============ 2 CAPTIONS ============ -->
+<section id="captions"><div class="wrap">
+ <div class="eyebrow">2 · Captions &amp; content, per platform</div>
+ <h2>Ready to approve. Copy, paste, post.</h2>
+ <p class="lead">Each post shows its day, time, play, the asset it needs and a copy-ready version for each platform. Where a real photo isn’t in yet, the card says so. We don’t post a different room as if it were Office 6 or 11.</p>
+ <div class="review-banner" id="reviewStoreNote" hidden>
+  <p>The shared review store couldn’t be reached, so anything you mark on this browser is saved only here. Use Copy my feedback so the others can see your notes.</p>
+  <button class="review-btn edit" type="button" id="reviewCopy">Copy my feedback</button>
+ </div>
+ <div class="toolbar"><div class="chips" id="platChips">
+  <button class="chip on" type="button" data-plat="all">All</button>
+  <button class="chip" type="button" data-plat="instagram">Instagram</button>
+  <button class="chip" type="button" data-plat="facebook">Facebook</button>
+  <button class="chip" type="button" data-plat="stories">Stories</button>
+  <button class="chip" type="button" data-plat="linkedin">LinkedIn</button>
+  <button class="chip" type="button" data-plat="gbp">Google Business Profile</button>
+  <button class="chip" type="button" data-plat="whatsapp">WhatsApp</button>
+ </div></div>
+ <div class="pcards"><article class="pcard reveal" data-plats="instagram facebook stories" data-post="W1" id="W1">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg" style="background-image:url('assets/kitchen.jpg')"><div class="lbl2">Real photo: the Hub kitchen. Swap in the A3 (Hub kitchen, coffee moment) coffee clip for Stories.</div></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W1</span><span class="tag">Play C1</span><span class="tag">Instagram</span><span class="tag">Facebook</span><span class="tag">Stories</span></div>
+   <h3>Tue 17 Nov · 08:30 SAST — Tuesday on the floor</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A3 (Hub kitchen, coffee moment) · Stories only</b></p>
+   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram feed</span><button class="cbtn" type="button" data-copy="cap-W1-0">Copy</button></div><pre id="cap-W1-0">Tuesday at The Village Hub starts in the kitchen.
+
+The coffee’s on, the floor is waking up, and there’s someone to say good morning to. That’s the part of coworking you don’t get at home.
+
+Been meaning to see the space? Book a tour and have a cup with us.
+
+villagehub.co.za
+
+#Stellenbosch #Coworking #NooitgedachtVillage #TheVillageHub</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W1-1">Copy</button></div><pre id="cap-W1-1">Tuesday at The Village Hub starts in the kitchen. ☕
+
+Filter coffee and tea are on all day for everyone on the floor: tenants, members and day-pass guests.
+
+If you’ve been working from home or a café and want to see what a proper desk in Stellenbosch feels like, come for a tour. Hot desks start at R60 an hour, or R250 for the day (excl. VAT).
+
+Book a tour: villagehub.co.za
+Nooitgedacht Village, Stellenbosch</pre></div><div class="pv" data-plat="stories"><div class="pvh"><span>Instagram + Facebook Stories (2 frames)</span><button class="cbtn" type="button" data-copy="cap-W1-2">Copy</button></div><pre id="cap-W1-2">Frame 1 · A3 (Hub kitchen, coffee moment) coffee clip (6–8 s): “Coffee’s on ☕”
+Frame 2 · Kitchen photo + link sticker → villagehub.co.za: “Come for a tour. Have a cup with us.”</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="linkedin" data-post="W2" id="W2">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg" style="background-image:url('assets/office-2.jpg')"><div class="lbl2">PLACEHOLDER: a different private office. Post only with the real A1 (Office 6, the 6-seater) photo.</div></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W2</span><span class="tag">Play O2</span><span class="tag">LinkedIn</span></div>
+   <h3>Tue 17 Nov · 10:00 SAST — Office 6: room for a team of six</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater)</b></p>
+   <div class="pv" data-plat="linkedin"><div class="pvh"><span>LinkedIn (company page)</span><button class="cbtn" type="button" data-copy="cap-W2-0">Copy</button></div><pre id="cap-W2-0">Growing past the kitchen table?
+
+A lot of Stellenbosch teams start the same way: a few people, a few home offices, and a WhatsApp group doing the job of a corridor. At some point the team needs one room.
+
+We have a 6-seater private office open at The Village Hub in Nooitgedacht Village. It comes furnished, cleaned and connected: 24/7 secure access, dedicated Wi-Fi, printing credits, reception and free parking. When clients come in, you can book the Village Boardroom (12 seats) or the Village Chamber (10).
+
+R20,950 a month, excluding 15% VAT. No fit-out.
+
+If your team of four to six is ready for its own door, book a viewing: villagehub.co.za
+
+#Stellenbosch #OfficeSpace #Coworking #SmallBusiness</pre></div><p class="pnote">⚠️ LinkedIn isn’t connected yet. Christel posts manually, or we schedule it once Marius connects LinkedIn.</p>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="gbp" data-post="W3" id="W3">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg need">Shoot needed · A2 (Office 11, the 2-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Needs the real A2 (Office 11, the 2-seater) photo. If it isn’t in by Tue night, move this post to next Wednesday.</span></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W3</span><span class="tag">Play O1</span><span class="tag">Google Business Profile</span></div>
+   <h3>Wed 18 Nov · 09:00 SAST — Office 11 on Google</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A2 (Office 11, the 2-seater)</b></p>
+   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Offer/Update · button “Book” → villagehub.co.za/private-offices-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W3-0">Copy</button></div><pre id="cap-W3-0">2-seater private office open in Stellenbosch
+
+A furnished office for two at The Village Hub, Nooitgedacht Village. 24/7 secure access, dedicated Wi-Fi, coffee and cleaning included, with free parking and meeting rooms to book when clients visit.
+
+R7,500 a month excl. VAT. Book a viewing on our website.</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="instagram facebook" data-post="W4" id="W4">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg need">Shoot needed · A1 (Office 6, the 6-seater), A2 (Office 11, the 2-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Carousel: A1 (Office 6, the 6-seater) × 2, A2 (Office 11, the 2-seater) × 2, then the kitchen. Needs both office shoots.</span></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W4</span><span class="tag">Play O1 + O2</span><span class="tag">Instagram</span><span class="tag">Facebook</span></div>
+   <h3>Thu 19 Nov · 08:30 SAST — The offer: two doors open</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater), A2 (Office 11, the 2-seater)</b></p>
+   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram carousel (5 slides)</span><button class="cbtn" type="button" data-copy="cap-W4-0">Copy</button></div><pre id="cap-W4-0">Two private offices are open at The Village Hub this month.
+
+→ Office 6 · a 6-seater for a growing team · R20,950 a month
+→ Office 11 · a 2-seater for a founder and a partner · R7,500 a month
+
+Both furnished, cleaned and connected, with 24/7 access, free parking, coffee all day and meeting rooms to book when clients visit. Prices exclude 15% VAT.
+
+Book a viewing: villagehub.co.za
+
+#Stellenbosch #OfficeSpace #PrivateOffice #NooitgedachtVillage</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook (same carousel)</span><button class="cbtn" type="button" data-copy="cap-W4-1">Copy</button></div><pre id="cap-W4-1">Two private offices are open at The Village Hub, Nooitgedacht Village.
+
+🚪 Office 6: a 6-seater for a team that’s ready to sit together. R20,950 a month.
+🚪 Office 11: a 2-seater for a founder and a partner. R7,500 a month.
+
+Both come furnished, cleaned and connected, with 24/7 secure access, free parking, coffee all day, and the Village Boardroom and Chamber to book when clients come in. Prices exclude 15% VAT.
+
+Come and see them: villagehub.co.za, or WhatsApp us on +27 63 260 3513.</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="gbp" data-post="W5" id="W5">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg need">Shoot needed · A1 (Office 6, the 6-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Needs A1 (Office 6, the 6-seater). Reuse the best Office 6 wide shot.</span></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W5</span><span class="tag">Play O2</span><span class="tag">Google Business Profile</span></div>
+   <h3>Thu 19 Nov · 11:00 SAST — Office 6 on Google</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater)</b></p>
+   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Offer/Update · button “Book” → villagehub.co.za/private-offices-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W5-0">Copy</button></div><pre id="cap-W5-0">6-seater private office available in Stellenbosch
+
+Room for a team of up to six at The Village Hub, Nooitgedacht Village. Furnished, cleaned and connected, with 24/7 secure access, free parking and meeting rooms on site.
+
+R20,950 a month excl. VAT. Book a viewing.</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="stories" data-post="W6" id="W6">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg" style="background-image:url('assets/foundry-lawn.jpg')"><div class="lbl2">Real photo: the Foundry lawn (23 Jan stills). Use A7 (Foundry lawn) instead if the weather’s good on the day.</div></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W6</span><span class="tag">Play C2 + D1</span><span class="tag">Stories</span></div>
+   <h3>Fri 20 Nov · 12:00 SAST — Friday from the floor</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A7 (Foundry lawn, optional), A4 (Hub walk-through, reception to lawn) or A2 (Office 11, the 2-seater) vertical</b></p>
+   <div class="pv" data-plat="stories"><div class="pvh"><span>Instagram + Facebook Stories (3 frames)</span><button class="cbtn" type="button" data-copy="cap-W6-0">Copy</button></div><pre id="cap-W6-0">Frame 1 · Foundry lawn: “Friday at Nooitgedacht Village 🌿”
+Frame 2 · Brand card: “Need a desk next week? Hour R60 · Half day R150 · Day R250 · Wanderer (5 days) R1,000. All excl. VAT.”
+Frame 3 · A4 (Hub walk-through, reception to lawn) clip (or the A2 (Office 11, the 2-seater) vertical): “Two private offices open → book a viewing”, link sticker → villagehub.co.za</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="instagram facebook" data-post="W7" id="W7">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg" style="background-image:url('assets/foundry-lawn.jpg')"><div class="lbl2">Real village photo. A real A8 (Village Stay room) photo is better: use it if one is approved.</div></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W7</span><span class="tag">Play S1</span><span class="tag">Instagram</span><span class="tag">Facebook</span></div>
+   <h3>Sat 21 Nov · 09:00 SAST — Village Stay Saturday</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A8 (Village Stay room, preferred)</b></p>
+   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram feed</span><button class="cbtn" type="button" data-copy="cap-W7-0">Copy</button></div><pre id="cap-W7-0">In Stellenbosch for work next week?
+
+Village Stay is in Nooitgedacht Village, the same village as The Village Hub. Stay the night, then take a hot desk at the Hub for the day: R250 excl. VAT, or book a tour and your first day is included.
+
+Stay enquiries: villagehub.co.za/accommodation.html
+
+#Stellenbosch #WorkTrip #VillageStay #NooitgedachtVillage</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W7-1">Copy</button></div><pre id="cap-W7-1">In Stellenbosch for work next week?
+
+Village Stay is in Nooitgedacht Village, the same village as The Village Hub. Stay the night, then work from a hot desk at the Hub: R250 for the day (excl. VAT). Or book a tour, and your first day is included.
+
+Ask about dates: villagehub.co.za/accommodation.html</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="whatsapp" data-post="W8" id="W8">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg need">Shoot needed · —<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Text only. Send only if the Hub already runs a member group and Christel wants to, from +27 63 260 3513. Follows the WhatsApp member-journey rules.</span></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W8</span><span class="tag">Play T2 / C3</span><span class="tag">WhatsApp</span></div>
+   <h3>Tue 17 Nov · Optional · 08:30 SAST — Member community note</h3>
+   <p class="muted small" style="margin:0">Assets: <b>—</b></p>
+   <div class="pv" data-plat="whatsapp"><div class="pvh"><span>WhatsApp · member group · business line +27 63 260 3513</span><button class="cbtn" type="button" data-copy="cap-W8-0">Copy</button></div><pre id="cap-W8-0">Morning everyone ☕ Coffee’s on in the kitchen.
+
+A small ask: we have two private offices open, a 6-seater and a 2-seater. If you know a team looking for space in Stellenbosch, send them our way: villagehub.co.za or this number. Thank you!</pre></div>
+  </div>
+  </div>
+ </article><article class="pcard reveal" data-plats="gbp facebook" data-post="W9" id="W9">
+  <div class="preview">
+  <div class="review-top">
+    <span class="pillst p-watch" data-review-pill>Awaiting joint approval</span>
+    <button class="review-who" type="button" data-review-who>Choose your name</button>
+  </div>
+  <div class="review-status" data-review-status><p class="review-empty">No reviews yet.</p></div>
+  <label class="review-box"><span>Edits or suggestions</span><textarea data-review-note rows="3" maxlength="2000" placeholder="Type a note, then approve or request edits."></textarea></label>
+  <div class="review-actions">
+    <button class="review-btn ok" type="button" data-review-approve>✓ Approve</button>
+    <button class="review-btn edit" type="button" data-review-edits>Request edits</button>
+    <p class="review-err" data-review-err></p>
+  </div>
+  <p class="review-safe">This only records your review. Nothing is posted or scheduled.</p>
+</div>
+  <div class="pbody">
+  <div class="pimg" style="background-image:url('assets/stairs-meeting.jpg')"><div class="lbl2">Real photo: the glass meeting room by the stairs (Jan 2026). Swap in A5 (Village Boardroom and Village Chamber) room stills when they’re in. Never the generated room renders.</div></div>
+  <div>
+   <div class="pmeta"><span class="pillst p-watch" data-review-pill>Awaiting joint approval</span><span class="tag">W9</span><span class="tag">Play B1</span><span class="tag">Google Business Profile</span><span class="tag">Facebook</span></div>
+   <h3>Wed 18 Nov · 09:30 SAST — Meeting rooms open this fortnight</h3>
+   <p class="muted small" style="margin:0">Assets: <b>A5 (Village Boardroom and Village Chamber, better) · real photo on file</b></p>
+   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Update · button “Book” → villagehub.co.za/boardroom-hire-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W9-0">Copy</button></div><pre id="cap-W9-0">Meeting rooms open in Stellenbosch
+
+Our Village Boardroom (12 seats, R390 an hour) and Village Chamber (10 seats, R350 an hour) have plenty of weekday slots open over the next two weeks, mornings and afternoons. Prices exclude VAT. Screen, Wi-Fi, coffee and free parking for your guests, in Nooitgedacht Village.
+
+Need a quiet room for two to four? Our small offices book from R80 an hour excl. VAT. Book online.</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W9-1">Copy</button></div><pre id="cap-W9-1">Need a room for a meeting, interview or workshop in the next two weeks? 📅
+
+The Village Boardroom (12 seats, R390 an hour) and the Village Chamber (10 seats, R350 an hour) have plenty of open slots, mornings and afternoons. Screen, fast Wi-Fi, coffee, and free parking for your guests. Prices exclude VAT.
+
+For two to four people, our small offices book from R80 an hour.
+
+Book online at villagehub.co.za, or WhatsApp us on +27 63 260 3513.
+Nooitgedacht Village, Stellenbosch</pre></div>
+  </div>
+  </div>
+ </article></div>
+ <div class="facts">
+  <span class="fact">Hub prices <b>excl. VAT</b>, checked against the live pricing page on the day</span>
+  <span class="fact">CTA <b>book a tour / viewing on villagehub.co.za</b></span>
+  <span class="fact">Email <b>hello@villagehub.co.za</b></span>
+  <span class="fact">Free day <b>only with a booked tour</b></span>
+ </div>
+</div></section>
+
+<!-- ============ 3 ASSETS ============ -->
+<section id="assets" class="alt"><div class="wrap">
+ <div class="eyebrow">3 · Assets needed</div>
+ <h2>What to film this week, and when it’s due.</h2>
+ <p class="lead">Each shot has its own folder in <a href="https://drive.google.com/drive/folders/13k58exkpPb2IcGkSXz2WI7tc-xvDSLPD" target="_blank" rel="noopener">this week’s marketing inbox ↗</a>, inside the Village Hub footage Drive. Open the folder on that line and drop the files in — I pick them up for the post that needs them. Tick the diary or the <a href="https://docs.google.com/spreadsheets/d/1vMvLIg1KIBz1q7X4qHThHMRdbJAHO9T9rI3-qwReveU/edit" target="_blank" rel="noopener">team tracker</a> so the whole team can see it’s in.</p>
+ <div class="assets"><label class="asset"><input type="checkbox" data-k="A1"><div class="aid">A1</div><div><h4>A1 (Office 6, the 6-seater) — stills + door clip</h4><p>3 horizontal stills (whole room from the doorway, the desks, the window light), 1 vertical 9:16 still, and one 8–10 s vertical clip walking in through the door. Empty room, desks cleared, lights on, blinds open.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W2 · W4 · W5 · SEO article</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/19PUmM58hPNrvlT9zBt0Sd4A3-wIz2vF5" target="_blank" rel="noopener">Upload A1 · Office 6</a></p></div><div class="due"><b>Due</b>Overdue · Tue 17 Nov 10:00 latest</div></label><label class="asset"><input type="checkbox" data-k="A2"><div class="aid">A2</div><div><h4>A2 (Office 11, the 2-seater) — stills + door clip</h4><p>The same set as A1 (Office 6, the 6-seater): 3 horizontal, 1 vertical, and one 8–10 s vertical clip opening the door. Show that it’s a 2-seater (two desks).</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W3 · W4 · W6</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1GwYSZXtdS-ObUDunRMB1hXnnEFeJUe8W" target="_blank" rel="noopener">Upload A2 · Office 11</a></p></div><div class="due"><b>Due</b>Overdue · Tue 17 Nov 18:00 latest</div></label><label class="asset"><input type="checkbox" data-k="A3"><div class="aid">A3</div><div><h4>A3 (Hub kitchen, coffee moment)</h4><p>One 6–8 s vertical clip of coffee being poured or the kettle going in the Hub kitchen, plus 1 vertical still. Hands only, or a consenting adult.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W1 Stories</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1s-sc9s96a-KKQ3SFBpHs-lGmM7Aj_jtA" target="_blank" rel="noopener">Upload A3 · Hub kitchen</a></p></div><div class="due"><b>Due</b>Tue 17 Nov 07:30</div></label><label class="asset"><input type="checkbox" data-k="A4"><div class="aid">A4</div><div><h4>A4 (Hub walk-through, reception to lawn) — reel</h4><p>A 20–30 s vertical walk with ambient sound and no voiceover: reception → open floor → Office 6 door → Office 11 door → a meeting-room doorway → kitchen → lawn. Slow and steady. Hold 3 s at the start and end.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W6 · next week’s Reel · GBP video · LinkedIn</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1wJTG2qYvw_R4zgmjglQCghirv2LzZlH-" target="_blank" rel="noopener">Upload A4 · Walk-through</a></p></div><div class="due"><b>Due</b>Thu 19 Nov 17:00</div></label><label class="asset"><input type="checkbox" data-k="A5"><div class="aid">A5</div><div><h4>A5 (Village Boardroom and Village Chamber) — Real Boardroom &amp; Chamber</h4><p>2 stills per room (empty, screen on, chairs tidy), horizontal and vertical. These replace the generated renders, which we won’t post.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> Better photo for W9 · room posts w/c 23 Nov</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1NSXe6Rp52BSkdWfg5fuD4rorgzJFqJhT" target="_blank" rel="noopener">Upload A5 · Boardroom &amp; Chamber</a></p></div><div class="due"><b>Due</b>Fri 20 Nov</div></label><label class="asset"><input type="checkbox" data-k="A6"><div class="aid">A6</div><div><h4>A6 (Parking &amp; arrival)</h4><p>1 still of the parking, 1 of the entrance and signage, and a 5 s clip of the walk from the car to the door. This backs up the ‘free parking’ line.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> SEO article · W4 · GBP photos</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1-8meipRFt6-ju21lnHW2c_H69d9bARoM" target="_blank" rel="noopener">Upload A6 · Parking</a></p></div><div class="due"><b>Due</b>Mon 16 Nov 10:00</div></label><label class="asset"><input type="checkbox" data-k="A7"><div class="aid">A7</div><div><h4>A7 (Foundry lawn) — Friday</h4><p>1 vertical still or a 5 s clip on the day, only if the weather is good. Adults with consent only, no children.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W6 frame 1</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1phGeiH5qXsPEhh9kdCpTq5ld5o6d-tKP" target="_blank" rel="noopener">Upload A7 · Foundry lawn</a></p></div><div class="due"><b>Due</b>Fri 20 Nov 11:30</div></label><label class="asset"><input type="checkbox" data-k="A8"><div class="aid">A8</div><div><h4>A8 (Village Stay room)</h4><p>1 real, approved photo of a Village Stay room or entrance. It should match what the listing says.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W7</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/17CEBLq1BdFwAwGIJ2W08c4HTa9ANh8a7" target="_blank" rel="noopener">Upload A8 · Village Stay</a></p></div><div class="due"><b>Due</b>Fri 20 Nov</div></label></div>
+ <div class="grid g2" style="margin-top:22px">
+  <div class="rule"><b>How to shoot:</b> use the phone’s rear camera, 4K at 30 fps, daylight 10:00–14:00. Shoot horizontal and vertical separately (don’t crop later). Lights on, blinds open, desks clear of papers and screens. Hold still for 3 s at the start and end of every clip.</div>
+  <div class="rule no"><b>Never:</b> filters, AI enhancement or generated rooms; identifiable children; adults without consent; client data on screens; one office labelled as another.</div>
+ </div>
+</div></section>
+
+<!-- ============ 4 REPORT ============ -->
 <section id="report"><div class="wrap">
- <div class="sechead"><div><div class="eyebrow">2 · This week’s report</div><h2>A quiet week, an empty fortnight, and one paid lead waiting.</h2></div><span class="stamp">Report as at Mon 16 Nov 2026, 08:45 SAST · covers Mon 9 – Sun 15 Nov vs 2 – 8 Nov · next refresh Mon 23 Nov</span></div>
+ <div class="sechead"><div><div class="eyebrow">4 · This week’s report</div><h2>A quiet week, an empty fortnight, and one paid lead waiting.</h2></div><span class="stamp">Report as at Mon 16 Nov 2026, 08:45 SAST · covers Mon 9 – Sun 15 Nov vs 2 – 8 Nov · next refresh Mon 23 Nov</span></div>
  <p class="lead">We only put real figures here. Where a source wasn’t pulled this week, the tile says when it was last read. Where a source isn’t connected, we say so instead of guessing.</p>
  <div class="kpis"><div class="kpi hl"><div class="k">Open offices</div><div class="v">2</div><div class="s">Office 6 (6-seat) · Office 11 (2-seat). No new office sign-ups 9–15 Nov</div><div class="src">Marius 12 Nov + Spacebring 16 Nov</div></div><div class="kpi hl"><div class="k">Office prices</div><div class="v">R20,950 · R7,500</div><div class="s">6-seater · 2-seater, per month excl. VAT, 3-month minimum</div><div class="src">villagehub.co.za/pricing, checked 16 Nov</div></div><div class="kpi"><div class="k">Room + desk cash</div><div class="v">R1,995</div><div class="s">9–15 Nov incl. VAT, vs R4,738 (−58%). Last week was one big Boardroom day</div><div class="src">Spacebring, 15–16 Nov pulls</div></div><div class="kpi"><div class="k">Meeting-room hours</div><div class="v">4.5 h</div><div class="s">2 bookings, both paid, vs 31 h (−85%)</div><div class="src">Spacebring, 9–15 Nov</div></div><div class="kpi"><div class="k">Desk bookings</div><div class="v">2</div><div class="s">Both day-pass redemptions, R0 cash, vs 14 (−86%)</div><div class="src">Spacebring, 9–15 Nov</div></div><div class="kpi"><div class="k">Rooms booked 16–29 Nov</div><div class="v">1</div><div class="s">Only Wed 25 Nov evening (free). Afternoons wide open</div><div class="src">Spacebring, 16 Nov 05:15</div></div><div class="kpi"><div class="k">New leads</div><div class="v">1</div><div class="s">9–15 Nov, vs 3. A Google Ads Boardroom lead for 17 people, still unanswered at 07:00 Mon</div><div class="src">Supabase + Gmail, 16 Nov</div></div><div class="kpi"><div class="k">Google Ads</div><div class="v">Not read</div><div class="s">Box browser hit a Google sign-in check for hello@. Last read: R1,228 on 2–8 Nov</div><div class="src">Hub Desk, 16 Nov 07:00</div></div><div class="kpi"><div class="k">Google Search</div><div class="v">40 clicks</div><div class="s">9–15 Nov · 1,035 impressions · CTR 3.9% · avg position 14.4 (12.3)</div><div class="src">Search Console API, 15 Nov</div></div><div class="kpi"><div class="k">Social</div><div class="v">Not read</div><div class="s">Meta not pulled this week. Last read 9 Nov: last post 23 Oct, FB 259 / IG 55</div><div class="src">Meta Business Suite, 9 Nov</div></div></div>
 
@@ -589,188 +960,6 @@ details.article[open] summary:after{content:" －"}
  <h3 style="margin-top:36px">Where each number comes from</h3>
  <div class="tablewrap"><table class="t"><thead><tr><th>Source</th><th>Status</th><th>Note</th></tr></thead><tbody><tr><td><b>Spacebring</b></td><td><span class="pillst p-live">Pulled 15–16 Nov</span></td><td>Sunday 20:00 data run plus Hub Desk’s 05:15 Monday re-pull. Bookings stand in for check-ins.</td></tr><tr><td><b>Lead tracker (Supabase) + inboxes</b></td><td><span class="pillst p-live">Checked 16 Nov</span></td><td>1 real new lead 9–15 Nov. 2 internal test rows excluded. No email-only enquiries missing from the tracker.</td></tr><tr><td><b>Live pricing page</b></td><td><span class="pillst p-live">Checked 16 Nov 08:30</span></td><td>No price changes since 12 Nov.</td></tr><tr><td><b>Search Console</b></td><td><span class="pillst p-live">API, 15 Nov</span></td><td>9–15 Nov. 14–15 Nov are still incomplete (Google’s lag).</td></tr><tr><td><b>Google Ads</b></td><td><span class="pillst p-bad">Not read this week</span></td><td>The box browser hit a Google sign-in check for hello@villagehub.co.za. Marius signs in once, then Hub Desk pulls it. The 13 Nov changes can’t be judged yet.</td></tr><tr><td><b>Google Business Profile</b></td><td><span class="pillst p-watch">Last read 9 Nov</span></td><td>5.0★ from 22 reviews. Not re-checked this week.</td></tr><tr><td><b>Facebook &amp; Instagram</b></td><td><span class="pillst p-watch">Last read 9 Nov</span></td><td>Not pulled this week, so last week’s posting results aren’t verified.</td></tr><tr><td><b>LinkedIn page &amp; LinkedIn Ads</b></td><td><span class="pillst p-bad">Not connected yet</span></td><td>No LinkedIn numbers until it’s connected.</td></tr><tr><td><b>Website analytics (GA4)</b></td><td><span class="pillst p-bad">Not connected</span></td><td>Search Console covers search only.</td></tr></tbody></table></div>
  <p class="note" style="margin-top:18px">Monday routine: pull every source between 07:00 and 09:30 SAST and refresh this section by 10:00. If a source fails, the tile says so and Marius hears first. We never estimate.</p>
-</div></section>
-
-<!-- ============ 3 CAPTIONS ============ -->
-<section id="captions"><div class="wrap">
- <div class="eyebrow">3 · Captions &amp; content, per platform</div>
- <h2>Ready to approve. Copy, paste, post.</h2>
- <p class="lead">Each post shows its day, time, play, the asset it needs and a copy-ready version for each platform. Where a real photo isn’t in yet, the card says so. We don’t post a different room as if it were Office 6 or 11.</p>
- <div class="toolbar"><div class="chips" id="platChips">
-  <button class="chip on" type="button" data-plat="all">All</button>
-  <button class="chip" type="button" data-plat="instagram">Instagram</button>
-  <button class="chip" type="button" data-plat="facebook">Facebook</button>
-  <button class="chip" type="button" data-plat="stories">Stories</button>
-  <button class="chip" type="button" data-plat="linkedin">LinkedIn</button>
-  <button class="chip" type="button" data-plat="gbp">Google Business Profile</button>
-  <button class="chip" type="button" data-plat="whatsapp">WhatsApp</button>
- </div></div>
- <div class="pcards"><article class="pcard reveal" data-plats="instagram facebook stories" id="W1">
-  <div class="pimg" style="background-image:url('assets/kitchen.jpg')"><div class="lbl2">Real photo: the Hub kitchen. Swap in the A3 (Hub kitchen, coffee moment) coffee clip for Stories.</div></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W1</span><span class="tag">Play C1</span><span class="tag">Instagram</span><span class="tag">Facebook</span><span class="tag">Stories</span></div>
-   <h3>Tue 17 Nov · 08:30 SAST — Tuesday on the floor</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A3 (Hub kitchen, coffee moment) · Stories only</b></p>
-   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram feed</span><button class="cbtn" type="button" data-copy="cap-W1-0">Copy</button></div><pre id="cap-W1-0">Tuesday at The Village Hub starts in the kitchen.
-
-The coffee’s on, the floor is waking up, and there’s someone to say good morning to. That’s the part of coworking you don’t get at home.
-
-Been meaning to see the space? Book a tour and have a cup with us.
-
-villagehub.co.za
-
-#Stellenbosch #Coworking #NooitgedachtVillage #TheVillageHub</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W1-1">Copy</button></div><pre id="cap-W1-1">Tuesday at The Village Hub starts in the kitchen. ☕
-
-Filter coffee and tea are on all day for everyone on the floor: tenants, members and day-pass guests.
-
-If you’ve been working from home or a café and want to see what a proper desk in Stellenbosch feels like, come for a tour. Hot desks start at R60 an hour, or R250 for the day (excl. VAT).
-
-Book a tour: villagehub.co.za
-Nooitgedacht Village, Stellenbosch</pre></div><div class="pv" data-plat="stories"><div class="pvh"><span>Instagram + Facebook Stories (2 frames)</span><button class="cbtn" type="button" data-copy="cap-W1-2">Copy</button></div><pre id="cap-W1-2">Frame 1 · A3 (Hub kitchen, coffee moment) coffee clip (6–8 s): “Coffee’s on ☕”
-Frame 2 · Kitchen photo + link sticker → villagehub.co.za: “Come for a tour. Have a cup with us.”</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="linkedin" id="W2">
-  <div class="pimg" style="background-image:url('assets/office-2.jpg')"><div class="lbl2">PLACEHOLDER: a different private office. Post only with the real A1 (Office 6, the 6-seater) photo.</div></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W2</span><span class="tag">Play O2</span><span class="tag">LinkedIn</span></div>
-   <h3>Tue 17 Nov · 10:00 SAST — Office 6: room for a team of six</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater)</b></p>
-   <div class="pv" data-plat="linkedin"><div class="pvh"><span>LinkedIn (company page)</span><button class="cbtn" type="button" data-copy="cap-W2-0">Copy</button></div><pre id="cap-W2-0">Growing past the kitchen table?
-
-A lot of Stellenbosch teams start the same way: a few people, a few home offices, and a WhatsApp group doing the job of a corridor. At some point the team needs one room.
-
-We have a 6-seater private office open at The Village Hub in Nooitgedacht Village. It comes furnished, cleaned and connected: 24/7 secure access, dedicated Wi-Fi, printing credits, reception and free parking. When clients come in, you can book the Village Boardroom (12 seats) or the Village Chamber (10).
-
-R20,950 a month, excluding 15% VAT. No fit-out.
-
-If your team of four to six is ready for its own door, book a viewing: villagehub.co.za
-
-#Stellenbosch #OfficeSpace #Coworking #SmallBusiness</pre></div><p class="pnote">⚠️ LinkedIn isn’t connected yet. Christel posts manually, or we schedule it once Marius connects LinkedIn.</p>
-  </div>
- </article><article class="pcard reveal" data-plats="gbp" id="W3">
-  <div class="pimg need">Shoot needed · A2 (Office 11, the 2-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Needs the real A2 (Office 11, the 2-seater) photo. If it isn’t in by Tue night, move this post to next Wednesday.</span></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W3</span><span class="tag">Play O1</span><span class="tag">Google Business Profile</span></div>
-   <h3>Wed 18 Nov · 09:00 SAST — Office 11 on Google</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A2 (Office 11, the 2-seater)</b></p>
-   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Offer/Update · button “Book” → villagehub.co.za/private-offices-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W3-0">Copy</button></div><pre id="cap-W3-0">2-seater private office open in Stellenbosch
-
-A furnished office for two at The Village Hub, Nooitgedacht Village. 24/7 secure access, dedicated Wi-Fi, coffee and cleaning included, with free parking and meeting rooms to book when clients visit.
-
-R7,500 a month excl. VAT. Book a viewing on our website.</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="instagram facebook" id="W4">
-  <div class="pimg need">Shoot needed · A1 (Office 6, the 6-seater), A2 (Office 11, the 2-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Carousel: A1 (Office 6, the 6-seater) × 2, A2 (Office 11, the 2-seater) × 2, then the kitchen. Needs both office shoots.</span></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W4</span><span class="tag">Play O1 + O2</span><span class="tag">Instagram</span><span class="tag">Facebook</span></div>
-   <h3>Thu 19 Nov · 08:30 SAST — The offer: two doors open</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater), A2 (Office 11, the 2-seater)</b></p>
-   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram carousel (5 slides)</span><button class="cbtn" type="button" data-copy="cap-W4-0">Copy</button></div><pre id="cap-W4-0">Two private offices are open at The Village Hub this month.
-
-→ Office 6 · a 6-seater for a growing team · R20,950 a month
-→ Office 11 · a 2-seater for a founder and a partner · R7,500 a month
-
-Both furnished, cleaned and connected, with 24/7 access, free parking, coffee all day and meeting rooms to book when clients visit. Prices exclude 15% VAT.
-
-Book a viewing: villagehub.co.za
-
-#Stellenbosch #OfficeSpace #PrivateOffice #NooitgedachtVillage</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook (same carousel)</span><button class="cbtn" type="button" data-copy="cap-W4-1">Copy</button></div><pre id="cap-W4-1">Two private offices are open at The Village Hub, Nooitgedacht Village.
-
-🚪 Office 6: a 6-seater for a team that’s ready to sit together. R20,950 a month.
-🚪 Office 11: a 2-seater for a founder and a partner. R7,500 a month.
-
-Both come furnished, cleaned and connected, with 24/7 secure access, free parking, coffee all day, and the Village Boardroom and Chamber to book when clients come in. Prices exclude 15% VAT.
-
-Come and see them: villagehub.co.za, or WhatsApp us on +27 63 260 3513.</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="gbp" id="W5">
-  <div class="pimg need">Shoot needed · A1 (Office 6, the 6-seater)<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Needs A1 (Office 6, the 6-seater). Reuse the best Office 6 wide shot.</span></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W5</span><span class="tag">Play O2</span><span class="tag">Google Business Profile</span></div>
-   <h3>Thu 19 Nov · 11:00 SAST — Office 6 on Google</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A1 (Office 6, the 6-seater)</b></p>
-   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Offer/Update · button “Book” → villagehub.co.za/private-offices-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W5-0">Copy</button></div><pre id="cap-W5-0">6-seater private office available in Stellenbosch
-
-Room for a team of up to six at The Village Hub, Nooitgedacht Village. Furnished, cleaned and connected, with 24/7 secure access, free parking and meeting rooms on site.
-
-R20,950 a month excl. VAT. Book a viewing.</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="stories" id="W6">
-  <div class="pimg" style="background-image:url('assets/foundry-lawn.jpg')"><div class="lbl2">Real photo: the Foundry lawn (23 Jan stills). Use A7 (Foundry lawn) instead if the weather’s good on the day.</div></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W6</span><span class="tag">Play C2 + D1</span><span class="tag">Stories</span></div>
-   <h3>Fri 20 Nov · 12:00 SAST — Friday from the floor</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A7 (Foundry lawn, optional), A4 (Hub walk-through, reception to lawn) or A2 (Office 11, the 2-seater) vertical</b></p>
-   <div class="pv" data-plat="stories"><div class="pvh"><span>Instagram + Facebook Stories (3 frames)</span><button class="cbtn" type="button" data-copy="cap-W6-0">Copy</button></div><pre id="cap-W6-0">Frame 1 · Foundry lawn: “Friday at Nooitgedacht Village 🌿”
-Frame 2 · Brand card: “Need a desk next week? Hour R60 · Half day R150 · Day R250 · Wanderer (5 days) R1,000. All excl. VAT.”
-Frame 3 · A4 (Hub walk-through, reception to lawn) clip (or the A2 (Office 11, the 2-seater) vertical): “Two private offices open → book a viewing”, link sticker → villagehub.co.za</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="instagram facebook" id="W7">
-  <div class="pimg" style="background-image:url('assets/foundry-lawn.jpg')"><div class="lbl2">Real village photo. A real A8 (Village Stay room) photo is better: use it if one is approved.</div></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W7</span><span class="tag">Play S1</span><span class="tag">Instagram</span><span class="tag">Facebook</span></div>
-   <h3>Sat 21 Nov · 09:00 SAST — Village Stay Saturday</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A8 (Village Stay room, preferred)</b></p>
-   <div class="pv" data-plat="instagram"><div class="pvh"><span>Instagram feed</span><button class="cbtn" type="button" data-copy="cap-W7-0">Copy</button></div><pre id="cap-W7-0">In Stellenbosch for work next week?
-
-Village Stay is in Nooitgedacht Village, the same village as The Village Hub. Stay the night, then take a hot desk at the Hub for the day: R250 excl. VAT, or book a tour and your first day is included.
-
-Stay enquiries: villagehub.co.za/accommodation.html
-
-#Stellenbosch #WorkTrip #VillageStay #NooitgedachtVillage</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W7-1">Copy</button></div><pre id="cap-W7-1">In Stellenbosch for work next week?
-
-Village Stay is in Nooitgedacht Village, the same village as The Village Hub. Stay the night, then work from a hot desk at the Hub: R250 for the day (excl. VAT). Or book a tour, and your first day is included.
-
-Ask about dates: villagehub.co.za/accommodation.html</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="whatsapp" id="W8">
-  <div class="pimg need">Shoot needed · —<br><span style="font:500 .8rem var(--sans);margin-top:8px;display:block">Text only. Send only if the Hub already runs a member group and Christel wants to, from +27 63 260 3513. Follows the WhatsApp member-journey rules.</span></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W8</span><span class="tag">Play T2 / C3</span><span class="tag">WhatsApp</span></div>
-   <h3>Tue 17 Nov · Optional · 08:30 SAST — Member community note</h3>
-   <p class="muted small" style="margin:0">Assets: <b>—</b></p>
-   <div class="pv" data-plat="whatsapp"><div class="pvh"><span>WhatsApp · member group · business line +27 63 260 3513</span><button class="cbtn" type="button" data-copy="cap-W8-0">Copy</button></div><pre id="cap-W8-0">Morning everyone ☕ Coffee’s on in the kitchen.
-
-A small ask: we have two private offices open, a 6-seater and a 2-seater. If you know a team looking for space in Stellenbosch, send them our way: villagehub.co.za or this number. Thank you!</pre></div>
-  </div>
- </article><article class="pcard reveal" data-plats="gbp facebook" id="W9">
-  <div class="pimg" style="background-image:url('assets/stairs-meeting.jpg')"><div class="lbl2">Real photo: the glass meeting room by the stairs (Jan 2026). Swap in A5 (Village Boardroom and Village Chamber) room stills when they’re in. Never the generated room renders.</div></div>
-  <div>
-   <div class="pmeta"><span class="pillst p-watch">Awaiting joint approval</span><span class="tag">W9</span><span class="tag">Play B1</span><span class="tag">Google Business Profile</span><span class="tag">Facebook</span></div>
-   <h3>Wed 18 Nov · 09:30 SAST — Meeting rooms open this fortnight</h3>
-   <p class="muted small" style="margin:0">Assets: <b>A5 (Village Boardroom and Village Chamber, better) · real photo on file</b></p>
-   <div class="pv" data-plat="gbp"><div class="pvh"><span>Google Business Profile · Update · button “Book” → villagehub.co.za/boardroom-hire-stellenbosch.html</span><button class="cbtn" type="button" data-copy="cap-W9-0">Copy</button></div><pre id="cap-W9-0">Meeting rooms open in Stellenbosch
-
-Our Village Boardroom (12 seats, R390 an hour) and Village Chamber (10 seats, R350 an hour) have plenty of weekday slots open over the next two weeks, mornings and afternoons. Prices exclude VAT. Screen, Wi-Fi, coffee and free parking for your guests, in Nooitgedacht Village.
-
-Need a quiet room for two to four? Our small offices book from R80 an hour excl. VAT. Book online.</pre></div><div class="pv" data-plat="facebook"><div class="pvh"><span>Facebook</span><button class="cbtn" type="button" data-copy="cap-W9-1">Copy</button></div><pre id="cap-W9-1">Need a room for a meeting, interview or workshop in the next two weeks? 📅
-
-The Village Boardroom (12 seats, R390 an hour) and the Village Chamber (10 seats, R350 an hour) have plenty of open slots, mornings and afternoons. Screen, fast Wi-Fi, coffee, and free parking for your guests. Prices exclude VAT.
-
-For two to four people, our small offices book from R80 an hour.
-
-Book online at villagehub.co.za, or WhatsApp us on +27 63 260 3513.
-Nooitgedacht Village, Stellenbosch</pre></div>
-  </div>
- </article></div>
- <div class="facts">
-  <span class="fact">Hub prices <b>excl. VAT</b>, checked against the live pricing page on the day</span>
-  <span class="fact">CTA <b>book a tour / viewing on villagehub.co.za</b></span>
-  <span class="fact">Email <b>hello@villagehub.co.za</b></span>
-  <span class="fact">Free day <b>only with a booked tour</b></span>
- </div>
-</div></section>
-
-<!-- ============ 4 ASSETS ============ -->
-<section id="assets" class="alt"><div class="wrap">
- <div class="eyebrow">4 · Assets needed</div>
- <h2>What to film this week, and when it’s due.</h2>
- <p class="lead">Each shot has its own folder in <a href="https://drive.google.com/drive/folders/13k58exkpPb2IcGkSXz2WI7tc-xvDSLPD" target="_blank" rel="noopener">this week’s marketing inbox ↗</a>, inside the Village Hub footage Drive. Open the folder on that line and drop the files in — I pick them up for the post that needs them. Tick the diary or the <a href="https://docs.google.com/spreadsheets/d/1vMvLIg1KIBz1q7X4qHThHMRdbJAHO9T9rI3-qwReveU/edit" target="_blank" rel="noopener">team tracker</a> so the whole team can see it’s in.</p>
- <div class="assets"><label class="asset"><input type="checkbox" data-k="A1"><div class="aid">A1</div><div><h4>A1 (Office 6, the 6-seater) — stills + door clip</h4><p>3 horizontal stills (whole room from the doorway, the desks, the window light), 1 vertical 9:16 still, and one 8–10 s vertical clip walking in through the door. Empty room, desks cleared, lights on, blinds open.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W2 · W4 · W5 · SEO article</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/19PUmM58hPNrvlT9zBt0Sd4A3-wIz2vF5" target="_blank" rel="noopener">Upload A1 · Office 6</a></p></div><div class="due"><b>Due</b>Overdue · Tue 17 Nov 10:00 latest</div></label><label class="asset"><input type="checkbox" data-k="A2"><div class="aid">A2</div><div><h4>A2 (Office 11, the 2-seater) — stills + door clip</h4><p>The same set as A1 (Office 6, the 6-seater): 3 horizontal, 1 vertical, and one 8–10 s vertical clip opening the door. Show that it’s a 2-seater (two desks).</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W3 · W4 · W6</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1GwYSZXtdS-ObUDunRMB1hXnnEFeJUe8W" target="_blank" rel="noopener">Upload A2 · Office 11</a></p></div><div class="due"><b>Due</b>Overdue · Tue 17 Nov 18:00 latest</div></label><label class="asset"><input type="checkbox" data-k="A3"><div class="aid">A3</div><div><h4>A3 (Hub kitchen, coffee moment)</h4><p>One 6–8 s vertical clip of coffee being poured or the kettle going in the Hub kitchen, plus 1 vertical still. Hands only, or a consenting adult.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W1 Stories</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1s-sc9s96a-KKQ3SFBpHs-lGmM7Aj_jtA" target="_blank" rel="noopener">Upload A3 · Hub kitchen</a></p></div><div class="due"><b>Due</b>Tue 17 Nov 07:30</div></label><label class="asset"><input type="checkbox" data-k="A4"><div class="aid">A4</div><div><h4>A4 (Hub walk-through, reception to lawn) — reel</h4><p>A 20–30 s vertical walk with ambient sound and no voiceover: reception → open floor → Office 6 door → Office 11 door → a meeting-room doorway → kitchen → lawn. Slow and steady. Hold 3 s at the start and end.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W6 · next week’s Reel · GBP video · LinkedIn</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1wJTG2qYvw_R4zgmjglQCghirv2LzZlH-" target="_blank" rel="noopener">Upload A4 · Walk-through</a></p></div><div class="due"><b>Due</b>Thu 19 Nov 17:00</div></label><label class="asset"><input type="checkbox" data-k="A5"><div class="aid">A5</div><div><h4>A5 (Village Boardroom and Village Chamber) — Real Boardroom &amp; Chamber</h4><p>2 stills per room (empty, screen on, chairs tidy), horizontal and vertical. These replace the generated renders, which we won’t post.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> Better photo for W9 · room posts w/c 23 Nov</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1NSXe6Rp52BSkdWfg5fuD4rorgzJFqJhT" target="_blank" rel="noopener">Upload A5 · Boardroom &amp; Chamber</a></p></div><div class="due"><b>Due</b>Fri 20 Nov</div></label><label class="asset"><input type="checkbox" data-k="A6"><div class="aid">A6</div><div><h4>A6 (Parking &amp; arrival)</h4><p>1 still of the parking, 1 of the entrance and signage, and a 5 s clip of the walk from the car to the door. This backs up the ‘free parking’ line.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> SEO article · W4 · GBP photos</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1-8meipRFt6-ju21lnHW2c_H69d9bARoM" target="_blank" rel="noopener">Upload A6 · Parking</a></p></div><div class="due"><b>Due</b>Mon 16 Nov 10:00</div></label><label class="asset"><input type="checkbox" data-k="A7"><div class="aid">A7</div><div><h4>A7 (Foundry lawn) — Friday</h4><p>1 vertical still or a 5 s clip on the day, only if the weather is good. Adults with consent only, no children.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W6 frame 1</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/1phGeiH5qXsPEhh9kdCpTq5ld5o6d-tKP" target="_blank" rel="noopener">Upload A7 · Foundry lawn</a></p></div><div class="due"><b>Due</b>Fri 20 Nov 11:30</div></label><label class="asset"><input type="checkbox" data-k="A8"><div class="aid">A8</div><div><h4>A8 (Village Stay room)</h4><p>1 real, approved photo of a Village Stay room or entrance. It should match what the listing says.</p><p style="margin-top:4px"><b style="color:var(--brown)">For:</b> W7</p><p style="margin-top:8px"><a class="dup" href="https://drive.google.com/drive/folders/17CEBLq1BdFwAwGIJ2W08c4HTa9ANh8a7" target="_blank" rel="noopener">Upload A8 · Village Stay</a></p></div><div class="due"><b>Due</b>Fri 20 Nov</div></label></div>
- <div class="grid g2" style="margin-top:22px">
-  <div class="rule"><b>How to shoot:</b> use the phone’s rear camera, 4K at 30 fps, daylight 10:00–14:00. Shoot horizontal and vertical separately (don’t crop later). Lights on, blinds open, desks clear of papers and screens. Hold still for 3 s at the start and end of every clip.</div>
-  <div class="rule no"><b>Never:</b> filters, AI enhancement or generated rooms; identifiable children; adults without consent; client data on screens; one office labelled as another.</div>
- </div>
 </div></section>
 
 <!-- ============ 5 SEO ============ -->
@@ -1022,6 +1211,7 @@ Nooitgedacht Village, Stellenbosch</pre></div>
   <div class="dbody" id="dbody"></div>
 </aside>
 <script>
+window.VH_REVIEW={"week": "2026-11-16", "url": "https://lcrjcdlydlfrohtppmky.supabase.co", "key": "sb_publishable_o99egQoMPiyVoqxYGwhLEw_vzzX1fVo", "reviewers": ["Marius", "Christel", "Francois"]};
 const PLAYS = [{"id": "D1", "track": "desks", "trackLabel": "Hot desks", "status": "now", "statusLabel": "Push now", "name": "Day-pass Tuesday", "when": "Every Tuesday offer post, starting this month", "channel": "Instagram + Facebook", "hook": "A real desk, a real day, a simple price.", "visual": "A wide, honest shot of a hot desk in use — laptop, coffee, garden light. Use a real photo from the floor, never a generated stand-in.", "photo": "assets/office.jpg", "needShoot": false, "caption": "Need a Stellenbosch desk for the day?\n\nHot desk day pass, R250 excl. VAT. Half day R150. Hourly R60.\nWanderer (5 days) from R1,000. Sit among the tenants, use the kitchen, stay as long as the work needs.\n\nBook a tour or a desk at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Offices are quite full. The open floor still has room, and day-pass and short-stay desks are the fastest way to fill it. Lead with the day pass, then show the ladder up to Wanderer, Visitor, Local and Resident so a good day can become a plan.", "risk": "Do not present the day pass as if it were a private office, and do not quote office prices (R7,500 / R20,950) here."}, {"id": "D2", "track": "desks", "trackLabel": "Hot desks", "status": "now", "statusLabel": "Push now", "name": "Tour + free day, always together", "when": "Thursday offer post, once this month, then as needed", "channel": "Instagram + Facebook + Google Business Profile", "hook": "Come and walk the floor. If it fits, the first day’s on us.", "visual": "Christel or Marius walking a guest from reception into the open floor. Faces only with consent.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot this week: a real tour on the floor", "caption": "Come and see The Village Hub.\n\nBook a tour and your first hot-desk day is included — only with the tour, never on its own.\n\nWe’ll walk the floor, the kitchen, the boardrooms and the garden, and tell you plainly whether a desk or one of our two open offices is the right fit.\n\nBook a viewing at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "A free day pass on its own was tried and is closed. Pairing it with a tour earns the visit, protects yield, and gets a serious look at the space. Say the condition in the caption, not only in the fine print.", "risk": "Never offer a standalone free day. Do not revive the Winter Hot Desk Special 2026."}, {"id": "D3", "track": "desks", "trackLabel": "Hot desks", "status": "later", "statusLabel": "Later", "name": "Student desks, in season only", "when": "Organic only when exam dates are close. Student Study Space ads stay paused.", "channel": "Instagram Stories + Facebook", "hook": "A quiet desk when the library is full.", "visual": "A quiet corner of the open floor, no identifiable students under 18, no school branding.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot only if we run this: a quiet desk, no identifiable minors", "caption": "Exam season in Stellenbosch is loud. The Hub is not.\n\nStudent day and week rates are on villagehub.co.za/pricing — student prices already include VAT.\n\nCome for a tour first, then settle in for the stretch.", "cta": "See student prices · villagehub.co.za/pricing.html", "thinking": "Student ads stay paused. This is a light organic mention only, timed to real exam pressure, not a new campaign. Student prices include VAT — say so, and do not mix them with the excl-VAT adult ladder.", "risk": "No identifiable children. Do not unpause Student Study Space ads without Marius’s written yes."}, {"id": "O1", "track": "offices", "trackLabel": "Open offices", "status": "now", "statusLabel": "Push now", "name": "Office 11: the 2-seater, plainly priced", "when": "Wed on Google Business Profile, and in the Thursday offer, until Office 11 is let", "channel": "Instagram + Facebook + LinkedIn + Google Business Profile", "hook": "A door, two desks, R7,500 a month excl. VAT.", "visual": "A real photo of Office 11 itself: two desks, the door, natural light. Not a wide open-floor shot, not another office, not a generated room.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot this week: Office 11, empty, daylight", "caption": "A door of your own, without leaving the floor.\n\nOur 2-seater private office is open: furnished, cleaned and connected, with 24/7 secure access, coffee all day and free parking.\n\nR7,500 a month, excluding 15% VAT.\n\nBook a viewing at villagehub.co.za", "cta": "Book a viewing · villagehub.co.za", "thinking": "As of 12 Nov, Office 11 is the only 2-seater physically open (Marius). Offices 9, 10 and 13 are taken, so we no longer say 'four 2-seaters'. Always quote R7,500 excl. VAT — R6,950 is retired. Show Office 11 itself, not a 4- or 6-seater.", "risk": "Do not use R6,950. Do not name other 2-seaters as available. Do not let this be read as a hot-desk price."}, {"id": "O2", "track": "offices", "trackLabel": "Open offices", "status": "now", "statusLabel": "Push now", "name": "Office 6: room for a team of six", "when": "LinkedIn Tuesday and the Thursday offer, until Office 6 is let", "channel": "LinkedIn + Instagram + Facebook + Google Business Profile", "hook": "One door, six desks, a team that finally sits together.", "visual": "A real photo of Office 6: the whole room from the door, the desks, the window light. Empty, or with consenting adults only.", "photo": "assets/office-2.jpg", "needShoot": true, "needLabel": "Shoot this week: Office 6, empty, daylight (photo shown is a different office)", "caption": "Growing past the kitchen table?\n\nWe have a 6-seater private office open at The Village Hub, Nooitgedacht Village. Furnished, cleaned and connected, with 24/7 secure access, free parking, and two meeting rooms to book when clients come in.\n\nR20,950 a month, excluding 15% VAT.\n\nBook a viewing at villagehub.co.za", "cta": "Book a viewing · villagehub.co.za", "thinking": "Office 6 is physically available (Marius, 12 Nov) and is the larger of the two open offices. It is a 6-seater — the Village Executive on the live pricing page at R20,950 excl. VAT — so it suits a team of four to six moving out of home offices or a too-small lease. LinkedIn is the natural home for this audience.", "risk": "Office 6 is NOT a 2-seater — never pair it with R7,500. Keep any internal occupancy arrangements out of public copy. No photo of a different office labelled as Office 6."}, {"id": "B1", "track": "rooms", "trackLabel": "Boardrooms", "status": "now", "statusLabel": "Push now", "name": "Boardroom after work", "when": "Thursday offer, most weeks", "channel": "Instagram + Facebook + LinkedIn", "hook": "The room is ready. The drive back to town can wait.", "visual": "The Village Boardroom set for a late meeting: table, chairs, late light. Needs a real photograph — we do not yet have one good enough to post.", "photo": null, "needShoot": true, "needLabel": "Shoot first: Village Boardroom, real room, real light", "caption": "Need the room after 17:00?\n\nThe Village Boardroom (12 seats) sits on the floor at Nooitgedacht. Park once, meet properly, and skip the late drive into town.\n\nAsk us for a same-week slot — WhatsApp +27 63 260 3513, or book via villagehub.co.za", "cta": "WhatsApp +27 63 260 3513 · or book on the site", "thinking": "Boardrooms are the strong second push. After-work is a real Stellenbosch pain: people already out at Nooitgedacht, or unwilling to go back to the CBD. We have had only a handful of room bookings in the last 30 days, so this has to be visible every week. Do not invent a conference-venue positioning.", "risk": "Do not post until a real boardroom photo is in hand. Do not use the current generated room images."}, {"id": "B2", "track": "rooms", "trackLabel": "Boardrooms", "status": "now", "statusLabel": "Push now", "name": "Chamber or Boardroom", "when": "Once in the next two weeks, then as a static GBP photo + caption", "channel": "Google Business Profile + Instagram", "hook": "Ten seats or twelve. Pick the room that fits the meeting.", "visual": "A honest pair of real photos: Village Chamber (10) and Village Boardroom (12), labelled clearly.", "photo": null, "needShoot": true, "needLabel": "Shoot first: both rooms, labelled, no generated images", "caption": "Two rooms, on the same floor.\n\nThe Village Chamber, 10 seats. The Village Boardroom, 12 seats. Both at The Village Hub, Nooitgedacht Village.\n\nTell us the size of the meeting and we’ll point you to the right one.\n\nWhatsApp +27 63 260 3513", "cta": "WhatsApp +27 63 260 3513", "thinking": "People searching Google often do not know we have two rooms, or which one they need. A clear side-by-side on Google Business Profile does quiet, useful work. Wait for real photography.", "risk": "No AI room photography. No ‘Stellenbosch conference venue’ or hall/retreat language."}, {"id": "B3", "track": "rooms", "trackLabel": "Boardrooms", "status": "later", "statusLabel": "Later", "name": "Mid-morning weekday gap", "when": "Only when the diary actually has a mid-morning gap — not as a standing discount", "channel": "Instagram Stories + WhatsApp status (business line only)", "hook": "The Boardroom is free tomorrow morning.", "visual": "A simple Stories frame over a real room photo, with the genuine open slot and no fake urgency.", "photo": null, "needShoot": true, "needLabel": "Needs a real room photo, and a real gap in the diary", "caption": "A mid-morning gap in the Village Boardroom.\n\nIf your team needs the room this week, WhatsApp us on +27 63 260 3513 and we’ll hold it.", "cta": "WhatsApp +27 63 260 3513", "thinking": "This is a fill-the-gap story, not a price cut and not a campaign. Only run it when Spacebring shows a real opening. Hub Desk can flag the gap; marketing writes the story.", "risk": "Do not invent availability. Do not turn this into a standing midweek special."}, {"id": "T1", "track": "tenants", "trackLabel": "Meet the floor", "status": "yes", "statusLabel": "After a signed yes", "name": "Weekly tenant introduction", "when": "Every Tuesday, once the first tenant has said yes in writing", "channel": "Instagram + Facebook + LinkedIn, then Stories", "hook": "The people on this floor are the reason to be here.", "visual": "One real portrait or workplace shot, approved by the tenant, with their logo only if they have signed off the file.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot after a signed yes: portrait, name, one-line what they do", "caption": "Meet someone on the floor.\n\n[Name] of [Company] works from The Village Hub. [One honest line about the work.]\n\nThis is what a membership here actually looks like — neighbours, not only desks.\n\nWant a tour? villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Weekly introductions include long-standing tenants, not only new arrivals. That is how the floor feels alive. Nothing goes out without a signed yes, a named spokesperson, and logo approval. Suggested first conversations (not a public list until they agree): Value Chain Solutions, Takenote Trading 245 CC, JDH Projects, African Earth Energy Group, then BFS Accounting from 1 December. Genwest and Atvantage stay off the list unless they come forward.", "risk": "Do not feature Don Hlahla (left 2 Nov). Schalk’s spelling and title were unverified as of 7 Nov. No post without a signed yes."}, {"id": "T2", "track": "tenants", "trackLabel": "Meet the floor", "status": "yes", "statusLabel": "After a signed yes", "name": "Member-to-member asks", "when": "Once a month, after two or three intros have run", "channel": "Instagram Stories + a short feed recap", "hook": "The floor can help. Ask it something useful.", "visual": "A simple Stories prompt over a warm floor photo, plus the week’s approved tenant face if they agree to be the ‘asker’.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "A question from the floor this month:\n\n[Tenant-approved question — a hire, a supplier, a collaboration, a local recommendation.]\n\nIf you can help, WhatsApp The Village Hub on +27 63 260 3513 and we’ll make the introduction.", "cta": "WhatsApp +27 63 260 3513", "thinking": "Community is more than portraits. A real ask, from a real member, gives people a reason to talk to each other and shows prospects that the floor is useful. The question must be written with the tenant, not invented for them.", "risk": "No unsanctioned name, need, or logo. Route replies through the business WhatsApp, never a personal number."}, {"id": "C1", "track": "community", "trackLabel": "Community", "status": "now", "statusLabel": "Push now", "name": "Tuesday coffee on the floor", "when": "A standing Tuesday story, plus a feed post in week one", "channel": "Instagram Stories, then a short Facebook recap", "hook": "Same floor, same Tuesday, a real cup of coffee.", "visual": "The kitchen or lounge in the morning, steam and light, people only with consent.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Shoot a real Tuesday morning in the kitchen or lounge", "caption": "Tuesday morning at The Village Hub.\n\nIf you’re on the floor, come through to the kitchen. If you’ve been meaning to see the space, book a tour and join us for a cup.\n\nvillagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "We do not need a new event brand. A standing, low-effort Tuesday coffee is enough to give the week a heartbeat and a reason to introduce a tenant the same day (T1).", "risk": "Don’t over-produce it. Don’t announce a packed event if only three people are there."}, {"id": "C2", "track": "community", "trackLabel": "Community", "status": "now", "statusLabel": "Push now", "name": "Friday on the Foundry lawn", "when": "Friday Stories most weeks, when the weather is kind", "channel": "Instagram Stories + Facebook", "hook": "The work can wait ten minutes. The lawn is right here.", "visual": "The Foundry lawn in late-afternoon light. Real photo — we already have a good one.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "Friday afternoon at Nooitgedacht.\n\nThe Foundry lawn sits next to The Village Hub. If you’re on a day pass or a membership, this is part of the day — not a special occasion.\n\nSee the floor: villagehub.co.za", "cta": "See the floor · villagehub.co.za", "thinking": "The garden is one of the Hub’s real advantages. Show it often, honestly, without turning every Friday into a festival. This also quietly supports Village Stay, because guests stay in the same precinct.", "risk": "Do not imply a public event or a partnership we have not agreed."}, {"id": "C3", "track": "community", "trackLabel": "Community", "status": "later", "statusLabel": "Later", "name": "Bring a colleague", "when": "Once members have had a Tuesday coffee they can invite someone to", "channel": "Instagram + a note Christel can forward on the business WhatsApp", "hook": "If the floor works for you, bring the person it might work for next.", "visual": "Two people at a desk or on a tour, both with consent.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Shoot later: two consenting people on the floor, not a posed stock pair", "caption": "Know someone who needs a Stellenbosch desk or a small office?\n\nBring them on a tour. We’ll show the floor properly, and if a hot desk is the right start, the first day can be included with that tour.\n\nBook at villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "Referral works here because the floor is already social. Keep the offer aligned with D2: a tour can include a first day, never a free day on its own. Members are asked, not bribed.", "risk": "No standalone free passes as a referral reward. No personal WhatsApp numbers in the post."}, {"id": "C4", "track": "community", "trackLabel": "Community", "status": "gap", "statusLabel": "Needs a shoot", "name": "A real walk-through of the floor", "when": "As soon as we have a 20–30 second clip from a real walk, not a generated video", "channel": "Instagram Reels, Facebook, Google Business Profile, LinkedIn", "hook": "This is the walk from reception to a desk, in real light.", "visual": "Handheld or simple gimbal: reception, open floor, the Office 6 and Office 11 doors, a boardroom threshold, kitchen, garden. No voiceover promises we cannot keep.", "photo": "assets/hero-reception.jpg", "needShoot": true, "needLabel": "Priority shoot: a real 20–30s walk-through. Yuri is proposed, not booked.", "caption": "A quiet walk through The Village Hub, Nooitgedacht Village.\n\nDesks, private offices, boardrooms, the kitchen, the garden. Come and do this walk with us.\n\nBook a tour: villagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "This is the single most useful piece of content we do not yet have. It serves every track. Existing footage lives in the shared Drive folder — use only what is real. Yuri has been proposed as videographer and is not booked until Marius says so.", "risk": "Never present a generated or heavily staged walk-through as the space. No identifiable children in the background."}, {"id": "C5", "track": "community", "trackLabel": "Community", "status": "later", "statusLabel": "Later", "name": "Quiet hours in exam season", "when": "Only in the stretch before exams, organic only", "channel": "Instagram + Stories", "hook": "The Hub stays quiet when town does not.", "visual": "An empty-feeling desk at first light. No young faces we cannot clearly show.", "photo": "assets/office.jpg", "needShoot": true, "needLabel": "Only if we run it: early-morning floor, no identifiable minors", "caption": "Stellenbosch gets noisy in exam season. This floor does not.\n\nIf you need a settled desk, book a tour and start with a day pass — or ask us about the student rates, which already include VAT.\n\nvillagehub.co.za", "cta": "Book a tour · villagehub.co.za", "thinking": "This supports D3 without turning into a student ad campaign. The tone is hospitality, not hustle. Student Study Space ads remain paused.", "risk": "No identifiable children. Do not unpause student ads from a caption."}, {"id": "S1", "track": "stay", "trackLabel": "Village Stay", "status": "now", "statusLabel": "Push now", "name": "Stay midweek, work downstairs", "when": "Every second Saturday, and one midweek Stories mention", "channel": "Instagram + Facebook, with a cross-mention in desk posts where it is natural", "hook": "Sleep at Village Stay. Work at The Village Hub. Same village.", "visual": "A real Stay interior or patio, then a cut or carousel to the Hub floor or the Foundry lawn. Only real property photos.", "photo": "assets/foundry-lawn.jpg", "needShoot": true, "needLabel": "Use approved Village Stay photos; shoot a ‘door to desk’ walk if we can", "caption": "Working in Stellenbosch for a few days?\n\nStay at Village Stay, Nooitgedacht Village, and take a hot desk downstairs at The Village Hub. Day pass R250 excl. VAT, or start with a tour and a first day included.\n\nStay: enquire via villagehub.co.za · Desk: the same.", "cta": "Enquire · villagehub.co.za", "thinking": "Village Stay and the Hub are neighbours in the same precinct — that is the offer. Do not blur the two businesses, and do not put Stay enquiries into the coworking WhatsApp journey as if they were desk leads. The site and Stay channels take the booking; marketing just tells the story.", "risk": "Watch listing details (children, check-in times) — they have been inconsistent. Do not invent house rules in a caption."}, {"id": "S2", "track": "stay", "trackLabel": "Village Stay", "status": "now", "statusLabel": "Push now", "name": "A Stellenbosch weekend, with a desk if you need one", "when": "Every second Saturday (alternating with S1)", "channel": "Instagram + Facebook", "hook": "A quiet weekend in the village. The desk is there on Monday if the trip runs over.", "visual": "Late light on the Foundry lawn or a real Stay bedroom/living shot, approved for marketing use.", "photo": "assets/foundry-lawn.jpg", "needShoot": false, "caption": "A Stellenbosch weekend that stays in the village.\n\nVillage Stay is at Nooitgedacht, next to The Village Hub. Arrive, settle, walk out onto the lawn. If the week begins before you leave, a hot desk is downstairs.\n\nAsk us about dates on villagehub.co.za", "cta": "Ask about dates · villagehub.co.za", "thinking": "Weekend demand and midweek desk demand can serve each other without forcing a package we have not priced. Keep the language hospitable and specific to this precinct, not generic ‘luxury stay’ copy.", "risk": "Do not invent a bundled stay-and-desk rate unless Marius has signed the price off."}, {"id": "S3", "track": "stay", "trackLabel": "Village Stay", "status": "gap", "statusLabel": "Needs a fix", "name": "Get the Stay listing straight", "when": "Before we spend harder on Stay content", "channel": "Internal first, then the public listing and website", "hook": "What we publish has to match the house.", "visual": "Not a public post. This is a hygiene play: photos, children policy, check-in times, and contact paths must agree.", "photo": null, "needShoot": false, "caption": "(No public caption until the listing, the website and the enquiry path say the same thing about children, check-in and how to book.)", "cta": "Internal fix first", "thinking": "Inconsistent listing details will undercut every Stay post we run. Hub Desk and whoever owns the Stay listing should align the facts; marketing will then use only the agreed lines. Stay enquiries should not be dropped into the coworking WhatsApp member journey.", "risk": "Do not advertise house rules we have not confirmed. Do not mix Stay inboxes with desk automations."}, {"id": "V1", "track": "virtual", "trackLabel": "Virtual office", "status": "later", "statusLabel": "Later", "name": "A Stellenbosch business address, quietly told", "when": "One supporting post a month. Do not pause or cut the live Virtual Office Google Ads.", "channel": "LinkedIn + Google Business Profile, occasional Instagram", "hook": "A real village address, without a desk you do not need yet.", "visual": "Reception, the building, or the village entrance — a real photograph of the address you are selling.", "photo": "assets/hero-reception.jpg", "needShoot": false, "caption": "Need a Stellenbosch business address, with mail handled on the floor?\n\nThe Village Hub’s virtual office sits at Nooitgedacht Village. When you are ready for a desk or an office, the same floor is here.\n\nAsk us at villagehub.co.za, or WhatsApp +27 63 260 3513.", "cta": "Ask us · villagehub.co.za", "thinking": "Virtual Office Google Ads stay live and are judged from the 7 November 2026 baseline. Organic content should support that, not compete with desk posts, and must not become the primary conversion path. The website lead form remains the primary conversion; WhatsApp is a contact route.", "risk": "Do not pause, cut or rebuild Virtual Office ads. Do not make ‘Hot Desk Lead’ the primary conversion in any ad copy we recommend."}];
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
@@ -1270,6 +1460,298 @@ $$('#plan input[type=checkbox][data-k]').forEach(cb => {
   });
 });
 diaryProgress();
+
+/* Caption review controls. Saves to the shared store; never posts or schedules. */
+(function () {
+  const cfg = window.VH_REVIEW || {};
+  const REVIEWERS = cfg.reviewers || ["Marius", "Christel", "Francois"];
+  const WEEK = cfg.week;
+  const URL = String(cfg.url || "").replace(/\/$/, "");
+  const KEY = cfg.key || "";
+  const NAME_KEY = "vh-reviewer";
+  const LOCAL_KEY = "vh-reviews-" + WEEK;
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+
+  function fmtWhen(iso) {
+    try {
+      const d = new Date(iso);
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Johannesburg",
+        weekday: "short", day: "numeric", month: "short",
+        hour: "2-digit", minute: "2-digit", hour12: false
+      }).formatToParts(d);
+      const g = (n) => (parts.find((p) => p.type === n) || {}).value || "";
+      return g("weekday") + " " + g("day") + " " + g("month") + ", " + g("hour") + ":" + g("minute") + " SAST";
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function headers() {
+    return {
+      apikey: KEY,
+      Authorization: "Bearer " + KEY,
+      "Content-Type": "application/json",
+      Prefer: "return=representation"
+    };
+  }
+
+  let rows = [];
+  let store = "shared";
+
+  function latestByPost(postId) {
+    const mine = rows
+      .filter((r) => r.post_id === postId)
+      .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    const by = {};
+    mine.forEach((r) => { by[r.reviewer] = r; });
+    return by;
+  }
+
+  function summary(by) {
+    const latest = Object.values(by);
+    const edits = latest.filter((r) => r.status === "edits_requested");
+    const approved = latest.filter((r) => r.status === "approved");
+    const mariusOk = by.Marius && by.Marius.status === "approved";
+    const christelOk = by.Christel && by.Christel.status === "approved";
+    if (edits.length) return { cls: "p-bad", text: "Edits requested" };
+    if (mariusOk && christelOk) return { cls: "p-live", text: "Approved by Marius and Christel" };
+    if (approved.length) {
+      const names = approved.map((r) => r.reviewer).join(" and ");
+      return { cls: "p-open", text: "Approved by " + names + " — awaiting others" };
+    }
+    return { cls: "p-watch", text: "Awaiting joint approval" };
+  }
+
+  function getName() {
+    try { return localStorage.getItem(NAME_KEY) || ""; } catch (e) { return ""; }
+  }
+  function setName(n) {
+    try { localStorage.setItem(NAME_KEY, n); } catch (e) {}
+  }
+
+  function ensureName() {
+    return new Promise((resolve) => {
+      const existing = getName();
+      if (REVIEWERS.includes(existing)) return resolve(existing);
+      openNameDialog(resolve);
+    });
+  }
+
+  function openNameDialog(cb) {
+    let dlg = document.getElementById("reviewNameDlg");
+    if (!dlg) {
+      dlg = document.createElement("div");
+      dlg.id = "reviewNameDlg";
+      dlg.className = "review-dlg";
+      dlg.innerHTML = '<div class="review-dlg-card" role="dialog" aria-modal="true" aria-labelledby="reviewNameTitle">' +
+        "<h3 id=\"reviewNameTitle\">Who is reviewing?</h3>" +
+        "<p>Choose your name so the approval is attributed. It stays on this browser until you change it.</p>" +
+        "<div class=\"review-dlg-btns\"></div></div>";
+      document.body.appendChild(dlg);
+      const wrap = dlg.querySelector(".review-dlg-btns");
+      REVIEWERS.forEach((name) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = name;
+        b.addEventListener("click", () => {
+          setName(name);
+          dlg.classList.remove("on");
+          if (dlg._cb) dlg._cb(name);
+        });
+        wrap.appendChild(b);
+      });
+      dlg.addEventListener("click", (ev) => {
+        if (ev.target === dlg) {
+          dlg.classList.remove("on");
+          if (dlg._cb) dlg._cb(null);
+        }
+      });
+    }
+    dlg._cb = cb;
+    dlg.classList.add("on");
+  }
+
+  async function loadShared() {
+    const q = "/rest/v1/marketing_caption_reviews?week_id=eq." +
+      encodeURIComponent(WEEK) +
+      "&select=id,week_id,post_id,reviewer,status,note,created_at&order=created_at.asc";
+    const res = await fetch(URL + q, { headers: headers() });
+    if (!res.ok) throw new Error("Could not load reviews (" + res.status + ")");
+    rows = await res.json();
+    store = "shared";
+  }
+
+  function loadLocal() {
+    try { rows = JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]"); } catch (e) { rows = []; }
+    store = "local";
+  }
+
+  function saveLocal() {
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(rows)); } catch (e) {}
+  }
+
+  async function addReview(postId, status, note) {
+    const reviewer = await ensureName();
+    if (!reviewer) return;
+    const payload = {
+      week_id: WEEK,
+      post_id: postId,
+      reviewer: reviewer,
+      status: status,
+      note: (note || "").slice(0, 2000)
+    };
+    if (store === "shared") {
+      const res = await fetch(URL + "/rest/v1/marketing_caption_reviews", {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("Could not save (" + res.status + ")");
+      const saved = await res.json();
+      rows = rows.concat(Array.isArray(saved) ? saved : [saved]);
+    } else {
+      payload.id = "local-" + Date.now();
+      payload.created_at = new Date().toISOString();
+      rows.push(payload);
+      saveLocal();
+    }
+    renderAll();
+  }
+
+  function copyFeedback() {
+    const lines = ["Village Hub caption reviews · week " + WEEK, ""];
+    $$(".pcard[data-post]").forEach((card) => {
+      const id = card.dataset.post;
+      const title = (card.querySelector("h3") || {}).textContent || id;
+      const by = latestByPost(id);
+      const sm = summary(by);
+      lines.push(id + " — " + title);
+      lines.push("  " + sm.text);
+      Object.values(by).forEach((r) => {
+        let line = "  " + r.reviewer + ": " +
+          (r.status === "approved" ? "Approved" : "Edits requested") +
+          " · " + fmtWhen(r.created_at);
+        if (r.note) line += "\n    “" + r.note + "”";
+        lines.push(line);
+      });
+      lines.push("");
+    });
+    const txt = lines.join("\n");
+    const done = () => { const b = document.getElementById("reviewCopy"); if (b) { const o = b.textContent; b.textContent = "Copied ✓"; setTimeout(() => { b.textContent = o; }, 1600); } };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, done);
+    else done();
+  }
+
+  function renderCard(card) {
+    const postId = card.dataset.post;
+    const by = latestByPost(postId);
+    const sm = summary(by);
+    card.querySelectorAll("[data-review-pill]").forEach((pill) => {
+      pill.className = "pillst " + sm.cls;
+      pill.textContent = sm.text;
+    });
+    const statusEl = card.querySelector("[data-review-status]");
+    if (statusEl) {
+      statusEl.replaceChildren();
+      const latest = Object.values(by).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      if (!latest.length) {
+        const p = document.createElement("p");
+        p.className = "review-empty";
+        p.textContent = "No reviews yet.";
+        statusEl.appendChild(p);
+      } else {
+        latest.forEach((r) => {
+          const row = document.createElement("div");
+          row.className = "review-line " + (r.status === "approved" ? "ok" : "edit");
+          const head = document.createElement("div");
+          head.className = "review-line-h";
+          const who = document.createElement("b");
+          who.textContent = r.status === "approved"
+            ? ("Approved by " + r.reviewer)
+            : ("Edits requested by " + r.reviewer);
+          const when = document.createElement("span");
+          when.textContent = fmtWhen(r.created_at);
+          head.appendChild(who);
+          head.appendChild(when);
+          row.appendChild(head);
+          if (r.note) {
+            const note = document.createElement("p");
+            note.className = "review-note";
+            note.textContent = r.note;
+            row.appendChild(note);
+          }
+          statusEl.appendChild(row);
+        });
+      }
+    }
+    const who = card.querySelector("[data-review-who]");
+    if (who) {
+      const n = getName();
+      who.textContent = n ? ("Reviewing as " + n + " · change") : "Choose your name";
+    }
+  }
+
+  function renderAll() {
+    $$(".pcard[data-post]").forEach(renderCard);
+    const banner = document.getElementById("reviewStoreNote");
+    if (banner) {
+      banner.hidden = store !== "local";
+    }
+  }
+
+  function wireCard(card) {
+    const postId = card.dataset.post;
+    const noteEl = card.querySelector("[data-review-note]");
+    const approve = card.querySelector("[data-review-approve]");
+    const edits = card.querySelector("[data-review-edits]");
+    const who = card.querySelector("[data-review-who]");
+    const err = card.querySelector("[data-review-err]");
+
+    async function run(status) {
+      if (err) err.textContent = "";
+      const note = noteEl ? noteEl.value.trim() : "";
+      if (status === "edits_requested" && !note) {
+        if (err) err.textContent = "Add a note so we know what to change.";
+        if (noteEl) noteEl.focus();
+        return;
+      }
+      try {
+        if (approve) approve.disabled = true;
+        if (edits) edits.disabled = true;
+        await addReview(postId, status, note);
+        if (noteEl) noteEl.value = "";
+      } catch (e) {
+        if (err) err.textContent = e.message || "Could not save.";
+      } finally {
+        if (approve) approve.disabled = false;
+        if (edits) edits.disabled = false;
+      }
+    }
+    if (approve) approve.addEventListener("click", () => run("approved"));
+    if (edits) edits.addEventListener("click", () => run("edits_requested"));
+    if (who) who.addEventListener("click", () => openNameDialog(() => renderAll()));
+  }
+
+  async function init() {
+    const cards = $$(".pcard[data-post]");
+    if (!cards.length) return;
+    cards.forEach(wireCard);
+    const copyBtn = document.getElementById("reviewCopy");
+    if (copyBtn) copyBtn.addEventListener("click", copyFeedback);
+    try {
+      if (!URL || !KEY || !WEEK) throw new Error("missing config");
+      await loadShared();
+    } catch (e) {
+      loadLocal();
+    }
+    renderAll();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
 
 </script>
 </body>
